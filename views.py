@@ -8,6 +8,7 @@ from passlib.hash import sha256_crypt
 from boostforms import LoginForm, RegisterForm, SoloOrderForm
 from models import User, ChatLog, Orders, ChatRoom
 from collections import OrderedDict
+from flask_socketio import send, emit, join_room
 import datetime
 
 from quickboosters import app, db, socketio
@@ -68,24 +69,6 @@ def register():
         return redirect(url_for('.login'))
 
     return render_template('register.html', form=form)
-
-@mainbp.route('/booster_register', methods=['GET', 'POST'])
-def booster_register():
-    form = RegisterForm()
-
-    if form.validate_on_submit():
-        booster_name = form.username.data
-        hash_password = sha256_crypt.hash(form.password.data)
-        email = form.email.data
-        join_date = datetime.datetime.now()
-
-        print ("booster_name: " + booster_name + " password: " + hash_password + " email: " + email)
-        new_booster = Booster(booster_name=booster_name, email=email, password=hash_password, join_date=datetime.datetime.now())
-        db.session.add(new_booster)
-        db.session.commit()
-        return redirect(url_for('.boosterlogin'))
-
-    return render_template('booster_register.html', form=form)
 
 @mainbp.route('/userdashboard')
 @login_required

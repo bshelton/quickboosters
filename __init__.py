@@ -27,7 +27,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = '.login'
+login_manager.login_view = 'mainbp.login'
 
 from models import User
 
@@ -40,7 +40,7 @@ def load_booster(booster_id):
 
 #Setup Chat SocketIO
 socketio = SocketIO()
-socketio.init_app(app)
+
 
 
 #Setup Flask-Admin
