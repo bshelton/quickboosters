@@ -1,12 +1,13 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
+from users.models import User
 
 import datetime
 from quickboosters import db
 
-
 class Orders(db.Model):
+    __tablename__ = 'orders'
     id = db.Column(db.Integer, primary_key=True)
     order_type = db.Column(db.String(30), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)

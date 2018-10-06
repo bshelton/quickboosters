@@ -21,4 +21,32 @@ def order():
         desired_division = form.desired_division.data
         desired_lp = form.desired_lp.data
 
+        price = determine_soloOrder_pricing(current_league, desired_league, current_division, desired_division)
+        print (price)
+
     return render_template('order.html', form=form)
+
+def determine_soloOrder_pricing(cl, dl, cd, dd):
+
+    ranks = { 1 : 'Bronze 5', 2 : 'Bronze 4', 3 : 'Bronze 3', 4 : 'Bronze 2', 5 : 'Bronze 1',
+     6 : 'Silver 5', 7 : 'Silver 4', 8 : 'Silver 3', 9 : 'Silver 2', 10 : 'Silver 1',
+     11 : 'Gold 5', 12 : 'Gold 4', 13 : 'Gold 3', 14 : 'Gold 2', 15 : 'Gold 1',
+     16 : 'Platinum 5', 17 : 'Platinum 4', 18 : 'Platinum 3', 19 : 'Platinum 2', 20 : 'Platinum 1',
+     21 : 'Diamond 5', 22 : 'Diamond 4', 23 : 'Diamond 3', 24 : 'Diamond 2' , 25 : 'Diamond 1',
+     26 : 'Master', 27 : 'Challenger'}
+
+    one_league = 5
+
+    current_rank = str(cl) + ' ' + str(cd)
+
+    desired_rank = str(dl) + ' ' + str(dd)
+
+    for rank, league in ranks.items():
+        if desired_rank == league:
+            desired_rank2 = rank
+        if current_rank == league:
+            current_rank2 = rank
+  
+    difference_rank = desired_rank2 - current_rank2
+    
+    return difference_rank * 5.0

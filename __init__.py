@@ -68,8 +68,10 @@ admin.add_view(UserView(User, db.session))
 
 import order
 from order import models, views
+
 import users
 from users import models, views
+
 import views
 app.register_blueprint(views.mainbp)
 app.register_blueprint(order.views.orderbp)

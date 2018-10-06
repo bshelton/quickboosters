@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, url_for, Blueprint, request
 from flask_login import login_required, current_user
 from chat.models import ChatLog, ChatRoom
 from users.models import User
+from order.models import Orders
 from flask_socketio import send, emit, join_room
 
 chatbp = Blueprint('chatbp', __name__, template_folder='templates', static_folder='static')
