@@ -123,31 +123,6 @@ Below we show some functionalities of our advanced systems. After purchase you g
         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
          <li class="hvr-bob"><img src="../static/img/champ.png"></li>
          <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-          <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-        <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
      </ul>
 
  <h3>Roles:</h3>
@@ -219,26 +194,19 @@ Below we show some functionalities of our advanced systems. After purchase you g
   <p>To contact with administrators please use contact form.</p>
 </div>
 <div class="chatbox">
+  
   <div class="chatbox-content">
-    <img src="../static/img/user.png" alt="img-user">
+    
     <div class="message">
-      <span class="usrname">Username</span>
+      <span class="usrname">{{name}}</span>
       <span class="chat-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span></div>
-
-  </div>
-  <div class="chatbox-content">
-    <img src="../static/img/user.png" alt="img-user">
-    <div class="message">
-      <span class="usrname">Username</span>
-      <span class="chat-text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span></div>
-
   </div>
 </div>
 <hr>
 
 <div class="send-form">
-  <input type="text" class="send-text">
-  <button type="submit" class="send-btn">
+  <input id="chat-text" type="text" class="send-text">
+  <button id="chat-submit" type="submit" class="send-btn">
     <span>Send</span>
  </button>
 </div>
@@ -256,9 +224,7 @@ Below we show some functionalities of our advanced systems. After purchase you g
         <th>Column 1</th>
         <th>Column 2</th>
         <th>Column 3</th>
-        <th>Column 4</th>
-        <th>Column 5</th>
-        <th>Column 6</th>
+    
       </tr>
     </thead>
     <tbody>
@@ -266,41 +232,31 @@ Below we show some functionalities of our advanced systems. After purchase you g
         <td>Cell 1</td>
         <td>Cell 2</td>
         <td>Cell 3</td>
-        <td>Cell 4</td>
-        <td>Cell 5</td>
-        <td>Cell 6</td>
+       
       </tr>
       <tr>
         <td>Cell 1</td>
         <td>Cell 2</td>
         <td>Cell 3</td>
-        <td>Cell 4</td>
-        <td>Cell 5</td>
-        <td>Cell 6</td>
+       
       </tr>
       <tr>
         <td>Cell 1</td>
         <td>Cell 2</td>
         <td>Cell 3</td>
-        <td>Cell 4</td>
-        <td>Cell 5</td>
-        <td>Cell 6</td>
+  
       </tr>
       <tr>
         <td>Cell 1</td>
         <td>Cell 2</td>
         <td>Cell 3</td>
-        <td>Cell 4</td>
-        <td>Cell 5</td>
-        <td>Cell 6</td>
+
       </tr>
       <tr>
         <td>Cell 1</td>
         <td>Cell 2</td>
         <td>Cell 3</td>
-        <td>Cell 4</td>
-        <td>Cell 5</td>
-        <td>Cell 6</td>
+
       </tr>
     </tbody>
   </table>
@@ -345,13 +301,8 @@ Below we show some functionalities of our advanced systems. After purchase you g
     <li class="key three">Losses</li>
     
   </ul>
-
    </section>
-  
-
 </div>
-
-
 
 <footer class="black">
     <div class="foot-contain">
@@ -398,15 +349,43 @@ Below we show some functionalities of our advanced systems. After purchase you g
     
 </footer>
 
-
-
           <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
           <script type="text/javascript" src="{{ url_for('static', filename='toggler.js') }}"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
 
           <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
           <script type="text/javascript" src="{{ url_for('static', filename='tabs.js') }}"></script>
 
 <script src="../js/chart.js"></script>
+
+<script type="text/javascript">
+  var socket = io.connect('http://127.0.0.1:5000');
+      socket.on('connect', function() {
+      socket.send('User Connected To Chat');  
+     
+  });
+
+  var form = $('#chat-submit').click(function(){
+      console.log("Clicked");
+
+      let user_msg = $('#chat-text').val()
+     
+       socket.emit('client_msg', {
+           user_name : "{{name}}",
+           message : user_msg
+       });
+
+      $('#chat-text').val('').focus()
+  });
+
+  socket.on('display_to_chat', function(msg){
+      $( 'div.message' ).append( '<div><b style="color: #000">'+msg.user_name+'</b> '+msg.message+'</div>' )
+      });
+  
+</script>
+
+
         </body>
         </html>
 

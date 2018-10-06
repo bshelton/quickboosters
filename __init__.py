@@ -27,9 +27,11 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = 'mainbp.login'
+login_manager.login_view = 'userbp.login'
 
-from models import User
+from users import models
+
+User = models.User
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -40,8 +42,6 @@ def load_booster(booster_id):
 
 #Setup Chat SocketIO
 socketio = SocketIO()
-
-
 
 #Setup Flask-Admin
 
@@ -66,10 +66,18 @@ class UserView(ModelView):
 
 admin.add_view(UserView(User, db.session))
 
+import order
+from order import models, views
+import users
+from users import models, views
 import views
 app.register_blueprint(views.mainbp)
+app.register_blueprint(order.views.orderbp)
+app.register_blueprint(users.views.userbp)
+from chat import models, views
+from forms import boostforms
+
 import models
-import boostforms
 
 
 if __name__ == '__main__':

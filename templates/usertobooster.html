@@ -28,7 +28,6 @@ User to Booster Chat
         var socket = io.connect('http://127.0.0.1:5000');
             socket.on('connect', function() {
             socket.send('User Connected To Chat');  
-           
         });
 
         var form = $('form').on('submit', function(e){
@@ -44,6 +43,7 @@ User to Booster Chat
         });
 
         socket.on('display_to_chat', function(msg){
+            
             $( 'div.message_holder' ).append( '<div><b style="color: #000">'+msg.user_name+'</b> '+msg.message+'</div>' )
             });
         
