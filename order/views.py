@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for, Blueprint, request
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy, functools
 from flask_wtf import FlaskForm
-#from wtforms import StringField, PasswordField, BooleanField
+
 from forms import boostforms
 
 orderbp = Blueprint('orderbp', __name__, template_folder='templates', static_folder='static')

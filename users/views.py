@@ -1,17 +1,16 @@
 from flask import Flask, render_template, redirect, url_for, Blueprint, request
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy, functools
-from sqlalchemy import func
-from flask_wtf import FlaskForm
+from sqlalchemy import func, and_
 
 from passlib.hash import sha256_crypt
 from forms import boostforms
-from collections import OrderedDict
 from flask_socketio import send, emit, join_room
 import datetime
 
 from quickboosters import app, db, socketio
 from users.models import User
+from order.models import Orders
 
 userbp = Blueprint('userbp', __name__, template_folder='templates', static_folder='static')
 
@@ -30,12 +29,15 @@ def login():
                 if sha256_crypt.verify(form.password.data, user.password) and user.role == "Admin":
                     login_user(user, remember=form.remember.data)
                     return redirect(request.args.get('next') or url_for('mainbp.admindashboard'))
-                elif sha256_crypt.verify(form.password.data, user.password) and user.role == "Client":
-                    login_user(user, remember=form.remember.data)
-                    return redirect(request.args.get('next') or url_for('userbp.userdashboard'))
+
                 elif sha256_crypt.verify(form.password.data, user.password) and user.role == "None":
                     login_user(user, remember=form.remember.data)
                     return redirect(request.args.get('next') or url_for('userbp.userdashboard'))
+
+                elif sha256_crypt.verify(form.password.data, user.password) and user.role == "Booster":
+                    login_user(user, remember=form.remember.data)
+                    return redirect(request.args.get('next') or url_for('boosterbp.boosterdashboard'))
+
                 else:
                      return '<h1> Wrong Password: Will Change Later </h1>'
             else:
@@ -65,7 +67,18 @@ def register():
     return render_template('register.html', form=form)
 
 
+@userbp.route('/users/order/<id>')
+@login_required
+def usercurrentorder(id):
+    user = User.query.filter(User.username == current_user.username).first()
+    order = Orders.query.filter(and_(Orders.id==id, Orders.user_id==user.id)).first()
+    return render_template('usercurrentorder.html', name=current_user.username, order=order)
+
 @userbp.route('/userdashboard')
 @login_required
 def userdashboard():
-    return render_template('members.html', name=current_user.username)
+    user = User.query.filter(User.username == current_user.username).first()
+    solo_orders = Orders.query.filter(and_(Orders.user_id==user.id, Orders.order_type=="Solo Boost")).all()
+
+    duo_orders = Orders.query.filter(and_(Orders.user_id==user.id, Orders.order_type=="Duo Boost")).all()
+    return render_template('userdashboard.html', name=current_user.username, duo_orders=duo_orders, solo_orders=solo_orders)

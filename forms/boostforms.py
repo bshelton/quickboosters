@@ -6,6 +6,8 @@ leagues = [('Bronze', 'Bronze'), ('Silver', 'Silver'), ('Gold','Gold'), ('Platin
 
 divisions = [('5', '5'), ('4', '4'), ('3', '3'), ('2', '2'), ('1','1')]
 lp_choices = [('0-20', '0-20'), ('21-40', '21-40'), ('41-60', '41-60'), ('61-80', '61-80'), ('81-99', '81-99')]
+
+regions = [('NA', 'NA'), ('LAN', 'LAN'), ('EUW', 'EUW'), ('OCE', 'OCE')]
 class LoginForm(FlaskForm):
     username = StringField('Username:', validators=[InputRequired(), Length(min=4, max=20)],render_kw={"placeholder": "Username"})
     password = PasswordField('Password:', validators=[InputRequired(), Length(min=8, max=80)],render_kw={"placeholder": "Password"})
@@ -24,3 +26,8 @@ class SoloOrderForm(FlaskForm):
     desired_league = SelectField(label='Desired League', choices=leagues)
     desired_division = SelectField(label='Desired Division', choices=divisions)
     desired_lp = SelectField(label='Desired LP', choices=lp_choices)
+
+class LeagueSoloBoostForm(FlaskForm):
+    game_username = StringField('Username', validators=[InputRequired()], render_kw={"placeholder": "Game Username"})
+    game_password = PasswordField("Password", validators=[InputRequired()],render_kw={"placeholder": "Password"})
+    game_region = SelectField(label='Region', choices=regions)

@@ -3,7 +3,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from flask_sqlalchemy import SQLAlchemy, functools
 from sqlalchemy import func
 from flask_wtf import FlaskForm
-#from wtforms import StringField, PasswordField, BooleanField
+
 from passlib.hash import sha256_crypt
 from forms import boostforms
 from collections import OrderedDict
@@ -18,13 +18,7 @@ mainbp = Blueprint('mainbp', __name__, template_folder='templates', static_folde
 def index():
     return render_template('index.html')
 
-
 @mainbp.route('/members')
 @login_required
 def memberdashboard():
-    return render_template('members.html', name=current_user.username)
-
-@mainbp.route('/admindashboard')
-@login_required
-def admindashboard():
-    return render_template('admindashboard.html', name=current_user.username)
+    return render_template('usercurrentorder.html', name=current_user.username)

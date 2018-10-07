@@ -1,217 +1,219 @@
-{% extends "bootstrap/base.html" %}
+<!DOCTYPE html>
+<html>
+<head>
+ <title>QuickBoosters</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/phone.css">
+ 
+</head>
+<body>
+    
+<!-- Side navigation -->
+<div class="sidenav-sticky">
+<img src="../static/img/logo1.png" alt="Logo">
+<a href="{{ url_for('userbp.userdashboard') }}"><i class="fa fa-fw fa-home"></i>Dashboard</a>
+<a href="#services"><i class="fa fa-fw fa-wrench"></i> Settings</a>
+<a href="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+<a href="#Orders"><i class="fa fa-fw fa-user"></i> Purchase</a>
+</div>
 
-{% block title %}
-User Dashboard
-{% endblock %}
-
-{% block styles %}
-{{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
-{% endblock %}
-
-{% block content %}
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="{{ url_for('.logout') }}">Log Out</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Welcome, {{ name }}</h1>
-
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-          </div>
-
-          <h2 class="sub-header">Section title</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                <tr>
-                  <td>1,005</td>
-                  <td>Nulla</td>
-                  <td>quis</td>
-                  <td>sem</td>
-                  <td>at</td>
-                </tr>
-                <tr>
-                  <td>1,006</td>
-                  <td>nibh</td>
-                  <td>elementum</td>
-                  <td>imperdiet</td>
-                  <td>Duis</td>
-                </tr>
-                <tr>
-                  <td>1,007</td>
-                  <td>sagittis</td>
-                  <td>ipsum</td>
-                  <td>Praesent</td>
-                  <td>mauris</td>
-                </tr>
-                <tr>
-                  <td>1,008</td>
-                  <td>Fusce</td>
-                  <td>nec</td>
-                  <td>tellus</td>
-                  <td>sed</td>
-                </tr>
-                <tr>
-                  <td>1,009</td>
-                  <td>augue</td>
-                  <td>semper</td>
-                  <td>porta</td>
-                  <td>Mauris</td>
-                </tr>
-                <tr>
-                  <td>1,010</td>
-                  <td>massa</td>
-                  <td>Vestibulum</td>
-                  <td>lacinia</td>
-                  <td>arcu</td>
-                </tr>
-                <tr>
-                  <td>1,011</td>
-                  <td>eget</td>
-                  <td>nulla</td>
-                  <td>Class</td>
-                  <td>aptent</td>
-                </tr>
-                <tr>
-                  <td>1,012</td>
-                  <td>taciti</td>
-                  <td>sociosqu</td>
-                  <td>ad</td>
-                  <td>litora</td>
-                </tr>
-                <tr>
-                  <td>1,013</td>
-                  <td>torquent</td>
-                  <td>per</td>
-                  <td>conubia</td>
-                  <td>nostra</td>
-                </tr>
-                <tr>
-                  <td>1,014</td>
-                  <td>per</td>
-                  <td>inceptos</td>
-                  <td>himenaeos</td>
-                  <td>Curabitur</td>
-                </tr>
-                <tr>
-                  <td>1,015</td>
-                  <td>sodales</td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+<!-- Page content -->
+<div class="main-sticky">
+<!-- Sidenav code -->
+    <div id="mySidenav" class="sidenav upper">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fas fa-times"></i></a>
+     <div class="logohide"><img src="../static/img/logo1.png" alt="Logo"></div>    
+      <a href="#">page 1</a>      
+                 <a href="#">page 2</a>
+                 <a href="#">page 3</a>
+                 <a class="btn-client" href="#"><i class="fas fa-lock"></i>client login</a>
     </div>
-{% endblock %}
+<!-- Sidenav code end -->
+<div class="container">
+          <div class="logo none">
+           <img src="../static/img/logo1.png" alt="Logo">
+        </div>
+<!-- Sidenav code --><div class="hide">
+                 <span onclick="openNav()">
+                  <i class="fas fa-bars"></i>
+                 </span>
+             </div> <!-- Sidenav code end -->
+
+        <nav class="navbar ml-auto">
+             <ul class="menu upper">
+                 <li><a href="grid.html"><i class="fas fa-sign-out-alt fnt"></i></a></li>
+                
+              </ul>
+        </nav>
+    </div>
+</div>
+
+<div class="ribbon">
+<p>Order Overview - ELO-Boost.net - League of Legends Boosting & Coaching service!</p>
+</div>
+
+<div class="breadcrumb brdr">
+<i class="fa-fw fa fa-info"></i> <strong>Welcome back {{name}}</strong><br><br>
+Below we show some functionalities of our advanced systems. After purchase you get an access to Members Area, where you can enter your LoL Account Credentials, view current stats like Top 3 Champions or Match History. You can also Pause your order, if you want to play some Normals, Ranked Teams or Custom Games.
+</div>
+
+<div class="grid-start">
+
+<section class="match">
+<div class="head">
+<i class="fa fa-user"></i>
+<span>Solo Boosting Orders</span>
+</div>
+
+<table>
+<thead align="center">
+<tr>
+<th>Date</th>
+<th>Game</th>
+<th>Progress</th>
+<th>Status</th>
+<th>Actions</th>
+
+</tr>
+</thead>
+<tbody>
+
+    {% for o in solo_orders %}
+    <tr>
+      <td>{{o.date_ordered}}</td>
+      <td>{{o.game}}</td>
+      <td>Some Javascript Later</td>
+      <td>{{o.status}}</td>
+      <td> <a href="#"><Button class="btn-details">DETAILS</Button> </a> </td>
+    </tr>
+    {% endfor %}
+
+</tbody>
+</table>
+
+</section>
+
+<section class="duo-match">
+  <div class="head">
+  <i class="fa fa-user"></i>
+  <span>Duo Boosting Orders</span>
+  </div>
+  
+  <table>
+  <thead align="center">
+  <tr>
+  <th>Date</th>
+  <th>Game</th>
+  <th>Progress</th>
+  <th>Status</th>
+  <th>Actions</th>
+  
+  </tr>
+  </thead>
+  <tbody>
+      {% for o in duo_orders %}
+      <tr>
+        <td>{{o.date_ordered}}</td>
+        <td>{{o.game}}</td>
+        <td>Some Javascript Later</td>
+        <td>{{o.status}}</td>
+        <td>Some Button Here</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+  </table>
+  
+  </section>
+
+</div>
+
+<footer class="black">
+<div class="foot-contain">
+<div class="link-one">
+<h4>Solo Boost</h4>
+<ul>
+          <li><a href="">Solo Division</a></li>
+          <li><a href="">Solo Placements</a></li>
+          <li><a href="">Solo Net Wins</a></li>
+        </ul>
+</div>
+<div class="link-two">
+ <h4>Duo Boost</h4>
+<ul>
+          <li><a href="">Duo Division</a></li>
+          <li><a href="">Duo Placements</a></li>
+          <li><a href="">Duo Net Wins</a></li>
+          <li><a href="">Demo</a></li>
+        </ul>
+</div>
+<div class="link-three">
+ <h4>Contact</h4>
+<ul>
+    <li><a href="">Contact Us</a></li>
+    <li><a href="">Live Chat</a></li>
+    <li><a href="">Members Area</a></li>
+    <li><a href="">Knowledgebase</a></li>
+</ul>
+</div>
+<div class="link-four">
+ <h4>Connect with Us</h4>
+<ul>
+            <li class="hvr-bob"><a href="https://facebook.com"><img src="../static/img/fb.png" alt=facebook">
+</a></li>
+    <li class="hvr-bob"><a href="https://twitter.com"><img src="../static/img/tw.png" alt="twitter">
+</a></li>
+   <li class="hvr-bob"><a href="https://instagram.com"><img src="../static/img/insta.png" alt="instagram">
+</a></li>
+</ul>
+<h5>©2018 Company Name. All Right Reserved</h5>   
+</div>
+
+</div>
+
+</footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='toggler.js') }}"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='tabs.js') }}"></script>
+
+<script src="../js/chart.js"></script>
+
+<script type="text/javascript">
+var socket = io.connect('http://127.0.0.1:5000');
+socket.on('connect', function() {
+socket.send('User Connected To Chat');  
+
+});
+
+var form = $('#chat-submit').click(function(){
+console.log("Clicked");
+
+let user_msg = $('#chat-text').val()
+
+socket.emit('client_msg', {
+   user_name : "{{name}}",
+   message : user_msg
+});
+
+$('#chat-text').val('').focus()
+});
+
+socket.on('display_to_chat', function(msg){
+$( 'div.message' ).append( '<div><b style="color: #000">'+msg.user_name+'</b> '+msg.message+'</div>' )
+});
+
+</script>
+
+
+</body>
+</html>
+
+

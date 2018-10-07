@@ -6,19 +6,19 @@
             <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,600,700" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
-         <link rel="stylesheet" type="text/css" href="../static/style.css">
-            <link rel="stylesheet" type="text/css" href="../static/phone.css">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='phone.css') }}">
          
         </head>
         <body>
             
 <!-- Side navigation -->
 <div class="sidenav-sticky">
-   <img src="../static/img/logo1.png" alt="Logo">
+   <img src="{{ url_for('static', filename='img/logo1.png') }}" alt="Logo">
  <a href="#home"><i class="fa fa-fw fa-home"></i> Home</a>
   <a href="#services"><i class="fa fa-fw fa-wrench"></i> Services</a>
-  <a href="#clients"><i class="fa fa-fw fa-user"></i> Clients</a>
   <a href="#contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+  <a href="#Orders"><i class="fa fa-fw fa-user"></i> Orders</a>
 </div>
 
 <!-- Page content -->
@@ -26,7 +26,7 @@
   <!-- Sidenav code -->
             <div id="mySidenav" class="sidenav upper">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fas fa-times"></i></a>
-             <div class="logohide"><img src="../static/img/logo1.png" alt="Logo"></div>    
+             <div class="logohide"><img src="{{ url_for('static', filename='img/logo1.png') }}" alt="Logo"></div>    
               <a href="#">page 1</a>      
                          <a href="#">page 2</a>
                          <a href="#">page 3</a>
@@ -35,7 +35,7 @@
         <!-- Sidenav code end -->
         <div class="container">
                   <div class="logo none">
-                   <img src="../static/img/logo1.png" alt="Logo">
+                   <img src="{{ url_for('static', filename='img/logo1.png') }}" alt="Logo">
                 </div>
 <!-- Sidenav code --><div class="hide">
                          <span onclick="openNav()">
@@ -119,10 +119,10 @@ Below we show some functionalities of our advanced systems. After purchase you g
       <div class="champ-contain">
         <h3>Champions:</h3>
      <ul>
-       <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-        <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
-         <li class="hvr-bob"><img src="../static/img/champ.png"></li>
+       <li class="hvr-bob"><img src="{{ url_for('static', filename='img/champ.png') }}"></li>
+        <li class="hvr-bob"><img src="{{ url_for('static', filename='img/champ.png') }}"></li>
+         <li class="hvr-bob"><img src="{{ url_for('static', filename='img/champ.png') }}"></li>
+         <li class="hvr-bob"><img src="{{ url_for('static', filename='img/champ.png') }}"></li>
      </ul>
 
  <h3>Roles:</h3>
@@ -170,16 +170,16 @@ Below we show some functionalities of our advanced systems. After purchase you g
 <div class="rank-box-contain">
   <div class="rank-box-one">
     <h5>Started</h5>
-      <img src="../static/img/silver_2.png">
+      <img src="{{ url_for('static', filename='img/silver_2.png') }}">
 
   </div>
   <div class="rank-box-two">
      <h5>Current</h5>
-      <img src="../static/img/silver_2.png">
+      <img src="{{ url_for('static', filename='img/silver_2.png') }}">
   </div>
   <div class="rank-box-three">
      <h5>Desired</h5>
-          <img src="../static/img/silver_2.png">
+          <img src="{{ url_for('static', filename='img/silver_2.png') }}">
   </div>
 </div>
 
@@ -335,14 +335,14 @@ Below we show some functionalities of our advanced systems. After purchase you g
    <div class="link-four">
          <h4>Connect with Us</h4>
         <ul>
-                    <li class="hvr-bob"><a href="https://facebook.com"><img src="../static/img/fb.png" alt=facebook">
+                    <li class="hvr-bob"><a href="https://facebook.com"><img src="{{ url_for('static', filename='img/fb.png') }}" alt="facebook">
 </a></li>
-            <li class="hvr-bob"><a href="https://twitter.com"><img src="../static/img/tw.png" alt="twitter">
+            <li class="hvr-bob"><a href="https://twitter.com"><img src="{{ url_for('static', filename='img/tw.png') }}" alt="twitter">
 </a></li>
-           <li class="hvr-bob"><a href="https://instagram.com"><img src="../static/img/insta.png" alt="instagram">
+           <li class="hvr-bob"><a href="https://instagram.com"><img src="{{ url_for('static', filename='img/insta.png') }}" alt="instagram">
 </a></li>
 </ul>
-        <h5>©2018 Company Name. All Right Reserved</h5>   
+        <h5>©2018 QuickBoosters. All Right Reserved</h5>   
     </div>
 
     </div>
@@ -357,13 +357,11 @@ Below we show some functionalities of our advanced systems. After purchase you g
           <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
           <script type="text/javascript" src="{{ url_for('static', filename='tabs.js') }}"></script>
 
-<script src="../js/chart.js"></script>
 
 <script type="text/javascript">
   var socket = io.connect('http://127.0.0.1:5000');
       socket.on('connect', function() {
       socket.send('User Connected To Chat');  
-     
   });
 
   var form = $('#chat-submit').click(function(){

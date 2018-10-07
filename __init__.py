@@ -72,10 +72,18 @@ from order import models, views
 import users
 from users import models, views
 
+import booster
+from booster import models, views
+
+import admin
+from admin import models, views
+
 import views
 app.register_blueprint(views.mainbp)
 app.register_blueprint(order.views.orderbp)
 app.register_blueprint(users.views.userbp)
+app.register_blueprint(booster.views.boosterbp)
+app.register_blueprint(admin.views.adminbp)
 from chat import models, views
 from forms import boostforms
 
