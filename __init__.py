@@ -2,10 +2,6 @@ from flask import Flask, redirect, request
 from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
 
-from flask_admin import Admin
-from flask_admin.contrib import sqla
-from flask_admin.contrib.sqla import ModelView
-
 from passlib.hash import sha256_crypt
 from flask_socketio import SocketIO, send, emit, join_room
 
@@ -42,29 +38,6 @@ def load_booster(booster_id):
 
 #Setup Chat SocketIO
 socketio = SocketIO()
-
-#Setup Flask-Admin
-
-admin = Admin(app, name='fboost-admin')
-
-class UserView(ModelView):
-    column_exclude_list = ['password']
-    column_display_pk = True
-    can_create = True
-    can_edit = True
-    can_delete = True
-
-
-    def on_model_change(self, form, model, is_created):
-        model.password = sha256_crypt.hash(model.password)
-
-    def is_accessible(self):
-        return current_user.role == "admin"
-
-    def inaccessible_callback(self, name, **kwargs):
-        return '<h1> You are not logged in!</h1>'
-
-admin.add_view(UserView(User, db.session))
 
 import order
 from order import models, views

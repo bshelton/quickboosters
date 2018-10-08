@@ -10,7 +10,7 @@ import datetime
 
 from quickboosters import app, db, socketio
 from users.models import User
-from order.models import Orders
+from order.models import Orders, Orders_Attributes
 
 userbp = Blueprint('userbp', __name__, template_folder='templates', static_folder='static')
 
@@ -67,12 +67,24 @@ def register():
     return render_template('register.html', form=form)
 
 
-@userbp.route('/users/order/<id>')
+@userbp.route('/users/order/<id>', methods=['GET', 'POST'])
 @login_required
 def usercurrentorder(id):
     user = User.query.filter(User.username == current_user.username).first()
     order = Orders.query.filter(and_(Orders.id==id, Orders.user_id==user.id)).first()
-    return render_template('usercurrentorder.html', name=current_user.username, order=order)
+
+    form = boostforms.LeagueSoloBoostForm()
+
+    if form.validate_on_submit():
+        game_username = form.game_username.data
+        game_password = form.game_password.data
+        game_region = form.game_region.data
+
+        order_attrib = Orders_Attributes(game_username=game_username, game_password=game_password, game_region=game_region, order_id=id)
+        db.session.add(order_attrib)
+        db.session.commit()
+
+    return render_template('usercurrentorder.html', name=current_user.username, order=order, form=form, id=id)
 
 @userbp.route('/userdashboard')
 @login_required

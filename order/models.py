@@ -17,6 +17,7 @@ class Orders(db.Model):
     status = db.Column(db.String(30), nullable=False)
     game = db.Column(db.String(30), nullable=False)
 
+    
     def __init__(order_type, user_id, order_amount, status, date_ordered, game, booster_assigned="None"):
         self.order_type = order_type
         self.user_id = user_id
@@ -34,7 +35,8 @@ class Orders_Attributes(db.Model):
     game_password = db.Column(db.String(40))
     game_region = db.Column(db.String(30))
 
-    def __init__(game_username, game_password, game_region):
+    def __init__(self,game_username, game_password, game_region, order_id):
+        self.order_id = order_id
         self.game_username = game_username
         self.game_password = game_password
         self.game_region = game_region

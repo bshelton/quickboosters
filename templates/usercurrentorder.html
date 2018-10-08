@@ -1,5 +1,5 @@
-         <!DOCTYPE html>
-        <html>
+<!DOCTYPE html>
+<html>
         <head>
          <title>QuickBoosters</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css">
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='phone.css') }}">
-         
+            {% import "bootstrap/wtf.html" as wtf %}
         </head>
         <body>
             
@@ -77,41 +77,40 @@ Below we show some functionalities of our advanced systems. After purchase you g
 
     <div class="tabs_item">
       <div class="form-grid">
-        <div class="form-left"><form>
-  <div class="input-container">
-    <i class="fa fa-user icon"></i>
-    <input class="input-field" type="text" placeholder="Username" name="usrnm">
-  </div>
+        <div class="form-left">
 
-  <div class="input-container">
-    <select class="input-field" type="text" name="carlist" form="carform">
-      <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-    </select>
-  </div>
-</form></div>
-        <div class="form-right"><form>
+  <form method="POST" action="/users/order/{{id}}">
+    <div class="input-container">
 
-  <div class="input-container">
-    <i class="fa fa-key icon"></i>
-    <input class="input-field" type="password" placeholder="Password" name="psw">
-  </div>
-  <div class="input-container">
-    <select class="input-field" type="text" name="carlist" form="carform">
-      <option value="volvo" disabled="true">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-    </select>
-  </div>
-
-  <button type="submit" class="btn-form">Register</button>
-</form></div>
-      </div>
-
+      <i class="fa fa-user icon"></i>
     
+      {{ form.hidden_tag() }}
+      {{ form.game_username(class_="input-field")}}
+
+    </div>
+
+    <div class="input-container">
+
+      {{form.game_region.label}}:
+      {{ form.game_region(class_="input-field")}}
+
+    </div>
+
+  </div>
+  <div class="form-right">
+
+  <div class="input-container">
+
+    <i class="fa fa-key icon"></i>
+    {{ form.game_password(class_="input-field")}}
+
+</div>
+
+  <button type="submit" id="gameinfo" class="btn-form">Submit</button>
+</form>
+
+</div>
+      </div>
       
     </div> <!-- / tabs_item -->
 
@@ -147,8 +146,6 @@ Below we show some functionalities of our advanced systems. After purchase you g
 <button type="submit" class="btn-form">Register</button>
 
       </div>
-     
-        
      
     </div> <!-- / tabs_item -->
 
@@ -359,6 +356,7 @@ Below we show some functionalities of our advanced systems. After purchase you g
 
 
 <script type="text/javascript">
+
   var socket = io.connect('http://127.0.0.1:5000');
       socket.on('connect', function() {
       socket.send('User Connected To Chat');  
