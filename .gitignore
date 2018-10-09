@@ -6,5 +6,6 @@
 __pycache__
 quickbooster-venv/
 sqlite3.exe
-rami.db
+*db
+database/
 

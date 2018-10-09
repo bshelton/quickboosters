@@ -1,6 +1,6 @@
 <!-- Page Sidebar -->
 <div class="page-sidebar">
-        <a class="logo-box" href="index.html"><span>QuickBoosters</span><i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
+        <a class="logo-box" href="{{ url_for('adminbp.admindashboard') }}"><span>QuickBoosters</span><i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
             <i class="icon-close" id="sidebar-toggle-button-close"></i></a>
         <div class="page-sidebar-inner">
             <div class="page-sidebar-menu">
@@ -32,8 +32,9 @@
                                 <i class="menu-icon icon-flash_on"></i><span>Users</span><i class="accordion-icon fa fa-angle-left"></i>
                             </a>
                             <ul class="sub-menu">
-                                <li><a href="ui-alerts.html">Lookup</a></li>
+                                <li><a href="{{url_for('adminbp.user_lookup') }}">Lookup</a></li>
                                 <li><a href="{{ url_for('adminbp.ui_buttons') }}">Buttons</a></li>
+                                <li><a href="{{ url_for('adminbp.create_user') }}">Create User</a></li>
                                 <li><a href="ui-icons.html">Stats</a></li>
                             </ul>
                         </li>
@@ -111,7 +112,7 @@
                             <li><a href="{{ url_for('adminbp.error_500') }}">500 Page</a></li>
                             <li><a href="profile.html">Profile</a></li>
                             <li><a href="{{ url_for('adminbp.login') }}">Login</a></li>
-                            <li><a href="register.html">Register</a></li>
+                            <li><a href="{{ url_for('adminbp.register_user') }}">Register</a></li>
                             <li><a href="{{ url_for('adminbp.lockscreen') }}">Lockscreen</a></li>
                             <li><a href="{{ url_for('adminbp.gallery') }}">Gallery</a></li>
                             <li><a href="{{ url_for('adminbp.pricing_tables') }}">Pricing Tables</a></li>

@@ -1,5 +1,9 @@
-from flask import Flask, render_template, Blueprint
+from flask import Flask, render_template, Blueprint, request
 from flask_login import login_required, login_url, current_user
+
+import json
+
+from users.models import User
 
 from quickboosters import app, db, socketio
 
@@ -13,6 +17,28 @@ def admindashboard():
 def test():
     return render_template('/admin/test.html')
 
+@adminbp.route('/admin/user-lookup')
+def user_lookup():
+    return render_template('/admin/user-lookup.html')
+
+@adminbp.route('/admin/user-search', methods=['GET','POST'])
+def user_search():
+    search_text = request.args.get("searchText")
+
+    try:
+        user = User.query.filter(User.username==search_text).first()
+    finally:
+        print(user.username)
+
+    return json.dumps({"results":user.username, "modal": "True"})
+    
+@adminbp.route('/admin/create-user')
+def create_user():
+    return render_template('admin/create-user.html')
+
+@adminbp.route('/admin/register')
+def register_user():
+    return render_template('admin/register.html')
 
 @adminbp.route('/error_404')
 def error_404():
@@ -33,6 +59,10 @@ def ui_buttons():
 @adminbp.route('/form-elements')
 def form_elements():
     return render_template('admin/form-elements.html')
+
+@adminbp.route('/form-wizard')
+def form_wizard():
+    return render_template('admin/form-wizard.html')
 
 @adminbp.route('/form-image-crop')
 def form_image_crop():

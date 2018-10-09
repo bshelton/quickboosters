@@ -30,7 +30,7 @@ def login():
                     login_user(user, remember=form.remember.data)
                     return redirect(request.args.get('next') or url_for('mainbp.admindashboard'))
 
-                elif sha256_crypt.verify(form.password.data, user.password) and user.role == "None":
+                elif sha256_crypt.verify(form.password.data, user.password) and user.role == "client":
                     login_user(user, remember=form.remember.data)
                     return redirect(request.args.get('next') or url_for('userbp.userdashboard'))
 
