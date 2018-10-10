@@ -6,6 +6,5 @@
 __pycache__
 quickbooster-venv/
 sqlite3.exe
-*db
-database/
+
 
