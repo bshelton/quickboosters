@@ -1240,3 +1240,418 @@ height: 200px;
 .four:before{background:rgba(84, 36, 55, 0.7)}
 .five:before{background:rgba(83, 119, 122, 0.7)}
 .six:before{background:rgba(119, 146, 174, 0.7)}
+
+/*Page 3 - Purchase*/
+
+.tab-container {
+  margin: auto;
+  max-width: 1024px;
+  border:1px solid red;
+  border: 1px solid #d0d0d0;
+  box-shadow: 0 1px 1px 1px hsla(0,0%,81%,.2);
+  border-radius: 4px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.tab-alt {
+  display: flex;
+  justify-content: space-between;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+}
+
+/* Style the buttons inside the tab */
+.tab-alt button {
+    background-color: #fafafa;
+    color: #999;
+    width: 500px;
+    float: left;
+    border: 1px solid #eee;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab-alt button:hover {
+    background-color: #fafafa;
+}
+
+/* Create an active/current tablink class */
+.tab-alt button.active {
+    background-color: #f1f1f1;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+     animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Fade in tabs */
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Underline From Left */
+.hvr-underline-from-left {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline-from-left:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  background: #ef7752;
+  height: 4px;
+  -webkit-transition-property: right;
+  transition-property: right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-from-left:hover:before, .hvr-underline-from-left:focus:before, .hvr-underline-from-left:active:before {
+  right: 0;
+}
+
+.tab-grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-auto-rows: min-content max-content auto;
+  grid-template-areas: "tab-one tab-two tab-three";
+
+}
+
+.tab-grid-container h2 {
+  font-size: 20px;
+
+}
+.tab-grid-item-one {
+    grid-area: tab-one;
+    text-align: center;
+}
+.tab-grid-item-two {
+    grid-area: tab-two;
+    text-align: center;
+}
+.tab-grid-item-three {
+    grid-area: tab-three;
+    border-left: 1px solid #eee;
+    padding: 0 20px;
+}
+
+.tab-header {
+  text-align: center;
+  margin:5rem auto 0;
+}
+
+.tab-header h2 {
+  text-align: center;
+  font-size: 35px;
+  font-weight: normal;
+  margin: 0;
+}
+
+
+.line {
+  border-top: 1px solid #b8babe;
+    width: 250px;
+    display: block;
+    box-shadow: 0 1px 0 0 #fff;
+    margin: 0 auto 5rem auto;
+}
+
+.flex-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.promo {
+  width: 100%;
+  position: relative;
+}
+
+
+.promoTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid #ef7752;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: #ef7752;
+}
+
+.promoTerm:focus{
+  color: #ef7752;
+}
+
+.promoButton {
+  position: absolute;  
+  right: -50px;
+  width: 80px;
+  height: 36px;
+  border: 1px solid #ef7752;
+  background: #ef7752;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+.promo-srch {
+  width: 79%;
+  position: relative;
+}
+
+
+.promoTerm-srch {
+  display: block;
+  float: left;
+  width: 100%;
+  border: 3px solid #ef7752;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: #ef7752;
+}
+
+.promoTerm-srch:focus{
+  color: #ef7752;
+}
+
+.promoButton-srch {
+  position: absolute;  
+  right: -50px;
+  width: 80px;
+  height: 36px;
+  border: 1px solid #ef7752;
+  background: #ef7752;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.font-small {
+  margin-top: 1.8rem;
+font-size: 85%;
+  }
+
+
+/*Page 3 Tab Two*/
+
+.slidecontainer {
+    padding: 0 10px;
+}
+
+#f, #u {
+  font-size: 128px;
+ 
+  letter-spacing: 2px;
+ text-shadow: 4px 4px rgba(5, 5, 5, 0.2);
+}
+#z {
+  margin: 0;
+  font-size: 25px;
+  letter-spacing: 2px;
+ text-shadow: 2px 2px rgba(5, 5, 5, 0.2);
+}
+
+.margin-bottom {
+   margin-bottom: 15px;
+}
+
+.slider-flex {
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-contain {
+  width: 600px;
+}
+
+
+.slider-head h2 {
+ font-weight: normal;
+ font-size:  1.5625rem;
+ letter-spacing: 2px;
+ text-shadow: 2px 2px rgba(5, 5, 5, 0.2);
+}
+
+
+
+.slider {
+    -webkit-appearance: none;
+    margin-top: 3.5rem;
+    width: 100%;
+    height: 15px;
+    background: #d3d3d3;
+    border-radius: 5px; 
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #ef7752;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #ef7752;
+    cursor: pointer;
+}
+
+/*Tertim slider*/
+#slider-testim, #slider-testim ul
+{
+  height: 200px;
+}
+
+#slider-testim
+{
+  overflow: hidden;
+  position: relative;
+}
+
+#slider-testim li
+{
+  float: left;
+  position: relative;
+  width: 600px;
+  display:block;
+  height: 200px;
+}
+
+#slider-testim ul
+{
+  list-style: none;
+  position: relative;
+  width: 9000px;
+  transition: left .3s linear;
+  -moz-transition: left .3s linear;
+  -o-transition: left .3s linear;
+  -webkit-transition: left .3s linear;
+  margin-left: -25px;
+  color: #666;
+}
+
+/*** Content ***/
+
+.slider-container {
+  margin: 0 auto;
+  padding: 0;
+  width: 60%;
+  min-height: 180px;
+  border-bottom: 1px solid #ccc;
+}
+
+.slider-container h4
+{
+  color: #0A7FAD;
+  text-shadow: -1px 0px 0px rgba(0, 0, 0, 0.50);
+}
+
+.slider-container  p
+{
+  font-weight: normal;
+  line-height: 150%;
+  text-align: justify;
+}
+
+/*** target hooks ****/
+
+@-webkit-keyframes slide-animation {
+  0% {opacity:0;}
+  2% {opacity:1;}
+  20% {left:0px; opacity:1;}
+  22.5% {opacity:0.6;}
+  25% {left:-600px; opacity:1;}
+  45% {left:-600px; opacity:1;}
+  47.5% {opacity:0.6;}
+  50% {left:-1200px; opacity:1;}
+  70% {left:-1200px; opacity:1;}
+  72.5% {opacity:0.6;}
+  75% {left:-1800px; opacity:1;}
+  95% {opacity:1;}
+  98% {left:-1800px; opacity:0;} 
+  100% {left:0px; opacity:0;}
+}
+
+#slider-testim ul
+{
+  -webkit-animation: slide-animation 25s infinite;
+}
+
+
+.works-flex {
+  display: flex;
+  margin:auto 25rem;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flex-head {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.flex-head h2 {
+ font-weight: normal;
+ font-size:  1.5625rem;
+ letter-spacing: 2px;
+ text-shadow: 2px 2px rgba(5, 5, 5, 0.2);
+}
+
+.flex-item-one ol {
+    display: block;
+    list-style-type: decimal;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 15.8px;
+}

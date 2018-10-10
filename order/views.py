@@ -26,6 +26,24 @@ def order():
 
     return render_template('order.html', form=form)
 
+@orderbp.route('/purchase', methods=['GET', 'POST'])
+def purchase():
+    soloform = boostforms.SoloOrderForm()
+
+    if soloform.validate_on_submit():
+        current_league = form.current_league.data
+        current_division = form.current_division.data
+        current_lp = form.current_lp.data
+
+        desired_league = form.desired_league.data
+        desired_division = form.desired_division.data
+        desired_lp = form.desired_lp.data
+
+        price = determine_soloOrder_pricing(current_league, desired_league, current_division, desired_division)
+        print (price)
+
+    return render_template('purchase.html', soloform=soloform)
+
 def determine_soloOrder_pricing(cl, dl, cd, dd):
 
     ranks = { 1 : 'Bronze 5', 2 : 'Bronze 4', 3 : 'Bronze 3', 4 : 'Bronze 2', 5 : 'Bronze 1',
