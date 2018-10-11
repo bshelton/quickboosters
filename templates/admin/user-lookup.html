@@ -19,22 +19,17 @@ Admin Dashboard
                         </div>
                         <div class="panel-body dashboard-panel">
                             <div class="form-group">
-                                <label for="input-rounded" class="col-sm-2 control-label">User:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" onkeyup="liveSearch(this.value)" class="form-control input-rounded" id="input-rounded">
-                                </div>
-                            </div>
-                            <div> <button type="button" class="btn btn-info btn-rounded">Search</button> </div>
-
-                            <div class="form-group">
                                     <label for="input-rounded" class="col-sm-2 control-label">User:</label>
 
                                     <div id="the-basics">
-                                        <input type="text" class="typeahead" placeholder="User">
+                                        <input type="text" id="idk" class="typeahead" placeholder="User">
                                     </div>
+                                    
                                     <div> <button type="button" class="btn btn-info btn-rounded">Search</button> </div>
+                                
+                                    <div class="tt"></div>
+                                
                                 </div>
-
 
                             <div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-sm">
@@ -63,47 +58,46 @@ Admin Dashboard
 
 <script>
 
-    $('#the-basics .typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    },
-    {
-        name: 'states',
-        source: liveSearch(value)
-    });
+         function findMatches(q){
+            var match = [];
 
-    function liveSearch(value){
-        value = value.trim(); // remove any spaces around the text
-
-        if(value != ""){ // don't make requests with an empty string
-            $.ajax({
-                url: "/admin/user-search",
-                data: {searchText: value},
-                dataType: "json",
-                success: function(data){
-                    var res = "";
-
-                    console.log(data.results);
-                    // create the html with results
-                    for(i in data.results){
-                        res += "<a href=\"#\" >" + data.results[i] + "</a>";
+            match.push(q);
+            
+    
+            if(q != ""){ // don't make requests with an empty string
+                $.ajax({
+                    url: "/admin/user-search",
+                    data: {searchText: q},
+                    dataType: "json",
+                    success: function(data){
+    
+                        console.log(data);
+                        // create the html with results
+                        match.push(data);
                     }
-                    $("#modal-body").html(res);
-
-                    if(data.modal === "True"){
-                        $('#myModal').modal('show')
-                    }
-                }
-            });
-
+                });
+            }
+            return match;
             
         }
-        else{
-            $("#results").html(""); // set the results empty in case of empty string
-        }
-        
-    }
-</script>
 
+
+  $('#idk').keyup(function(){
+
+  users= $(this).val();
+  something = findMatches(users);
+  console.log(something);
+
+  $('#the-basics .typeahead').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            },
+            {
+                name: 'user',
+                source: something
+            });
+  });
+    </script>
 {% endblock %}
+

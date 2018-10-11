@@ -24,13 +24,17 @@ def user_lookup():
 @adminbp.route('/admin/user-search', methods=['GET','POST'])
 def user_search():
     search_text = request.args.get("searchText")
+    matches = []
+    users = User.query.filter(User.username.like("%" + search_text + "%")).all()
+    
+    for f in users:
+        matches.append(f.username)
 
-    try:
-        user = User.query.filter(User.username==search_text).first()
-    finally:
-        print(user.username)
+    new_matches = dict(enumerate(matches))
 
-    return json.dumps({"results":user.username, "modal": "True"})
+    json_matches = json.dumps(new_matches)
+
+    return json_matches
     
 @adminbp.route('/admin/create-user')
 def create_user():
