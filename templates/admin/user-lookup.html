@@ -24,8 +24,7 @@ Admin Dashboard
                                     <div id="the-basics">
                                         <input type="text" name="autocomplete" id="autocomplete" placeholder="User">
                                     </div>
-                                    
-                                    <div> <button type="button" class="btn btn-info btn-rounded">Search</button> </div>
+                                    <!-- <div> <button type="button" class="btn btn-info btn-rounded">Search</button> </div> -->
                                 
                                 </div>
 
@@ -55,26 +54,29 @@ Admin Dashboard
 </div><!-- /Page Content -->
 
 <script>
+             $('#autocomplete').autocomplete({
+                    source: function(request, response) {
+                        $.ajax({
+                            type: "GET",
+                                url: '/admin/user-search',
+                                dataType: "json",
+                                data: { search: $("#autocomplete").val() },
 
- $( "#autocomplete" )
-            .keyup(function() {
-            var value = $( this ).val();
-            console.log(value);
-            $.ajax({
-                   type: "GET",
-                    url: '/admin/user-search',
-                    data: value,
-                    }).success(function (data) {
-                        console.log(data.results);
-                        $('#autocomplete').autocomplete({
-                        source: data.results,
-                        minLength: 1
+                                success: function (data) {
+                                    
+                                response($.map(data.results, function (item) {
+                                    
+                                    console.log(item.value);
+                                return { label: item.name, value: item.value };
+                            }));
+                        },
+                            error: function (xhr, status, error) {
+                                 alert(error);
+                        }   
                         });
+                    }
                 });
-        })
-  .keyup();
-
-
+                            
     </script>
 {% endblock %}
 

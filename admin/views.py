@@ -25,23 +25,25 @@ def user_lookup():
 @adminbp.route('/admin/user-search', methods=['GET','POST'])
 def user_search():
     data = request.args
-    flattened = list(itertools.chain.from_iterable(data))
+    data2 = request.args.get('search')
+    print(data2)
 
-    str1 = ''.join(flattened)
-
-    print (str1)
     matches = []
-    users = User.query.filter(User.username.like("%"+ str1+"%")).all()
+    users = User.query.filter(User.username.like("%"+ data2+"%")).all()
     
     for f in users:
         matches.append(f.username)
 
     new_matches = dict(enumerate(matches))
-    print (type(new_matches))
+
+
     results = []
     for k,v in new_matches.items():
-        results.append({"name": v})
-    print(results)
+        results.append({"label": "name", "value": v})
+
+    print (results)
+    
+    results2 = json.dumps(results)
 
     return jsonify(results=results)
     
