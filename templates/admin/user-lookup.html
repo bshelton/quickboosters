@@ -22,12 +22,10 @@ Admin Dashboard
                                     <label for="input-rounded" class="col-sm-2 control-label">User:</label>
 
                                     <div id="the-basics">
-                                        <input type="text" id="idk" class="typeahead" placeholder="User">
+                                        <input type="text" name="autocomplete" id="autocomplete" placeholder="User">
                                     </div>
                                     
                                     <div> <button type="button" class="btn btn-info btn-rounded">Search</button> </div>
-                                
-                                    <div class="tt"></div>
                                 
                                 </div>
 
@@ -58,46 +56,25 @@ Admin Dashboard
 
 <script>
 
-         function findMatches(q){
-            var match = [];
-
-            match.push(q);
-            
-    
-            if(q != ""){ // don't make requests with an empty string
-                $.ajax({
-                    url: "/admin/user-search",
-                    data: {searchText: q},
-                    dataType: "json",
-                    success: function(data){
-    
-                        console.log(data);
-                        // create the html with results
-                        match.push(data);
-                    }
+ $( "#autocomplete" )
+            .keyup(function() {
+            var value = $( this ).val();
+            console.log(value);
+            $.ajax({
+                   type: "GET",
+                    url: '/admin/user-search',
+                    data: value,
+                    }).success(function (data) {
+                        console.log(data.results);
+                        $('#autocomplete').autocomplete({
+                        source: data.results,
+                        minLength: 1
+                        });
                 });
-            }
-            return match;
-            
-        }
+        })
+  .keyup();
 
 
-  $('#idk').keyup(function(){
-
-  users= $(this).val();
-  something = findMatches(users);
-  console.log(something);
-
-  $('#the-basics .typeahead').typeahead({
-                hint: true,
-                highlight: true,
-                minLength: 1
-            },
-            {
-                name: 'user',
-                source: something
-            });
-  });
     </script>
 {% endblock %}
 

@@ -1,6 +1,7 @@
-from flask import Flask, render_template, Blueprint, request
+from flask import Flask, render_template, Blueprint, request, jsonify
 from flask_login import login_required, login_url, current_user
 
+import itertools
 import json
 
 from users.models import User
@@ -23,18 +24,26 @@ def user_lookup():
 
 @adminbp.route('/admin/user-search', methods=['GET','POST'])
 def user_search():
-    search_text = request.args.get("searchText")
+    data = request.args
+    flattened = list(itertools.chain.from_iterable(data))
+
+    str1 = ''.join(flattened)
+
+    print (str1)
     matches = []
-    users = User.query.filter(User.username.like("%" + search_text + "%")).all()
+    users = User.query.filter(User.username.like("%"+ str1+"%")).all()
     
     for f in users:
         matches.append(f.username)
 
     new_matches = dict(enumerate(matches))
+    print (type(new_matches))
+    results = []
+    for k,v in new_matches.items():
+        results.append({"name": v})
+    print(results)
 
-    json_matches = json.dumps(new_matches)
-
-    return json_matches
+    return jsonify(results=results)
     
 @adminbp.route('/admin/create-user')
 def create_user():
