@@ -36,7 +36,6 @@ def user_search():
 
     new_matches = dict(enumerate(matches))
 
-
     results = []
     for k,v in new_matches.items():
         results.append({"label": "name", "value": v})
