@@ -23,9 +23,9 @@ Admin Dashboard
 
                                     <div id="the-basics">
                                         <input type="text" name="autocomplete" id="autocomplete" placeholder="User">
+                                        <button type="button" id="searchButton" style="float: right" class="btn btn-info btn-rounded">Search</button>
                                     </div>
-                                    <!-- <div> <button type="button" class="btn btn-info btn-rounded">Search</button> </div> -->
-                                
+                                    
                                 </div>
 
                             <div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -75,6 +75,12 @@ Admin Dashboard
                         }   
                         });
                     }
+                });
+
+                $('#searchButton').click(function() {
+                    user = $('#autocomplete').val()
+
+                    window.location.href = "/admin/user/profile/"+user;
                 });
                             
     </script>

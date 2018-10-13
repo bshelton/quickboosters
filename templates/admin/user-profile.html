@@ -1,0 +1,145 @@
+{% extends "/admin/admin_base.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+{% block content %}
+<div class="page-content">
+            
+    <!-- Page Inner -->
+    <div class="page-inner no-page-title">
+        
+        <div id="main-wrapper">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-white">
+                        <div class="panel-heading clearfix">
+                            <h4 class="panel-title">Edit User: {{user.username}}</h4>
+                        </div>
+                        <div class="panel-body dashboard-panel">
+                            <form>
+                                    <div class="form-group">
+                                      <label for="exampleInputEmail1">Email address</label>
+                                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{user.email}}">
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="exampleInputEmail1">Username</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{user.username}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                            <label for="exampleInputPassword1">Password</label>
+                                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                          </div>
+                            
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                  </form> 
+
+                            <div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="mySmallModalLabel">Users Found!</h4>
+                                        </div>
+                                        <div id="modal-body" class="modal-body">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                        <div class="panel panel-white">
+                            <div class="panel-heading clearfix">
+                                <h4 class="panel-title">{{user.username}}'s Orders</h4>
+                            </div>
+                            <div class="panel-body">
+                                    <div class="table-responsive">
+                                            <table id="example" class="display table table-data-width">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Date</th>
+                                                        <th>Type</th>
+                                                        <th>Status</th>
+                                                        <th>Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Tiger Nixon</td>
+                                                        <td>System Architect</td>
+                                                        <td>Edinburgh</td>
+                                                        <td>61</td>
+                                                        <td>2011/04/25</td>
+                                                        <td>$320,800</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Garrett Winters</td>
+                                                        <td>Accountant</td>
+                                                        <td>Tokyo</td>
+                                                        <td>63</td>
+                                                        <td>2011/07/25</td>
+                                                        <td>$170,750</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ashton Cox</td>
+                                                        <td>Junior Technical Author</td>
+                                                        <td>San Francisco</td>
+                                                        <td>66</td>
+                                                        <td>2009/01/12</td>
+                                                        <td>$86,000</td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                               </table>  
+                                            </div>
+    
+                            </div>
+                        </div>
+                    </div>
+
+        </div><!-- Main Wrapper -->
+
+    </div><!-- /Page Inner -->
+    
+</div><!-- /Page Content -->
+
+<script>
+             $('#autocomplete').autocomplete({
+                    source: function(request, response) {
+                        $.ajax({
+                            type: "GET",
+                                url: '/admin/user-search',
+                                dataType: "json",
+                                data: { search: $("#autocomplete").val() },
+
+                                success: function (data) {
+                                    
+                                response($.map(data.results, function (item) {
+                                    
+                                    console.log(item.value);
+                                return { label: item.name, value: item.value };
+                            }));
+                        },
+                            error: function (xhr, status, error) {
+                                 alert(error);
+                        }   
+                        });
+                    }
+                });
+
+                $('#searchButton').click(function() {
+                    user = $('#autocomplete').val()
+
+                    window.location.href = "/admin/user/profile/"+user;
+                });
+                            
+    </script>
+{% endblock %}
+

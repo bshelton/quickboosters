@@ -1,4 +1,4 @@
-from flask import Flask, render_template, Blueprint, request, jsonify
+from flask import Flask, render_template, Blueprint, request, jsonify, Response
 from flask_login import login_required, login_url, current_user
 
 import itertools
@@ -49,6 +49,12 @@ def user_search():
 @adminbp.route('/admin/create-user')
 def create_user():
     return render_template('admin/create-user.html')
+
+@adminbp.route('/admin/user/profile/<username>')
+def user_profile(username):
+
+    user = User.query.filter(User.username==username).first()
+    return render_template('admin/user-profile.html', username=username, user=user)
 
 @adminbp.route('/admin/register')
 def register_user():
