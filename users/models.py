@@ -1,6 +1,5 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
-from flask_admin import Admin
 
 import datetime
 from quickboosters import db
@@ -19,10 +18,10 @@ class User(UserMixin, db.Model):
         self.password = password
         self.role = role
 
-    class Role(db.Model):
-        __tablename__ = 'roles';
-        id = db.Column(db.Integer(), primary_key=True)
-        name = db.Column(db.String(50), unique=True)
+class Role(db.Model):
+    __tablename__ = 'roles'
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(50), unique=True)
 
-        def __init__(self, name):
-            self.name = name
+    def __init__(self, name):
+        self.name = name

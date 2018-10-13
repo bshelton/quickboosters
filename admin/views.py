@@ -1,10 +1,13 @@
 from flask import Flask, render_template, Blueprint, request, jsonify, Response
 from flask_login import login_required, login_url, current_user
+from sqlalchemy import func, and_
 
 import itertools
 import json
 
 from users.models import User
+from booster.models import Booster
+from order.models import Orders
 
 from quickboosters import app, db, socketio
 
@@ -24,12 +27,11 @@ def user_lookup():
 
 @adminbp.route('/admin/user-search', methods=['GET','POST'])
 def user_search():
-    data = request.args
     data2 = request.args.get('search')
     print(data2)
 
     matches = []
-    users = User.query.filter(User.username.like("%"+ data2+"%")).all()
+    users = User.query.filter(User.username.like("%" + data2 + "%")).all()
     
     for f in users:
         matches.append(f.username)
@@ -40,12 +42,28 @@ def user_search():
     for k,v in new_matches.items():
         results.append({"label": "name", "value": v})
 
-    print (results)
-    
-    results2 = json.dumps(results)
-
     return jsonify(results=results)
     
+
+@adminbp.route('/admin/booster-search', methods=['GET', 'POST'])
+def booster_search():
+
+    data = request.args.get('search')
+    matches = []
+
+    boosters = Booster.query.filter(Booster.username.like("%" + data + "%")).all()
+
+    for i in boosters:
+        matches.append(i.username)
+    new_matches = dict(enumerate(matches))
+
+    results = []
+    for k,v in new_matches.items():
+        results.append({"label": "name", "value": v})
+
+    return jsonify(results=results)
+
+
 @adminbp.route('/admin/create-user')
 def create_user():
     return render_template('admin/create-user.html')
@@ -54,7 +72,11 @@ def create_user():
 def user_profile(username):
 
     user = User.query.filter(User.username==username).first()
-    return render_template('admin/user-profile.html', username=username, user=user)
+
+    solo_orders = Orders.query.filter(and_(Orders.user_id==user.id, Orders.order_type=="Solo Boost")).all()
+
+    duo_orders = Orders.query.filter(and_(Orders.user_id==user.id, Orders.order_type=="Duo Boost")).all()
+    return render_template('admin/user-profile.html', user=user, username=username, userduo_orders=duo_orders, solo_orders=solo_orders)
 
 @adminbp.route('/admin/register')
 def register_user():
