@@ -19,6 +19,5 @@ def index():
     return render_template('index.html')
 
 @mainbp.route('/members')
-@login_required
 def memberdashboard():
     return render_template('usercurrentorder.html', name=current_user.username)

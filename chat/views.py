@@ -5,6 +5,7 @@ from chat.models import ChatLog, ChatRoom
 from users.models import User
 from order.models import Orders
 from flask_socketio import send, emit, join_room
+import datetime
 
 chatbp = Blueprint('chatbp', __name__, template_folder='templates', static_folder='static')
 
