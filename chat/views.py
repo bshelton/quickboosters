@@ -34,7 +34,7 @@ def handle_client_msg(json, methods=['GET', 'POST']):
     user = User.query.filter(User.username == current_user.username).first()
     
     #Check to see if user is a client
-    if current_user.username == user.username and user.role == "Client":
+    if current_user.username == user.username and user.role == "client":
         booster = match_user_with_booster(user)
         
         #Create a room name
@@ -44,13 +44,14 @@ def handle_client_msg(json, methods=['GET', 'POST']):
         try:
             db.session.add(cr)
             db.session.commit()
+            
         finally:
             join_room(roomname)
             socketio.emit('display_to_chat', json, room=roomname, callback=message_received)
 
-    elif user.role == "None": # Else was the user who sent the message a booster?
+    elif user.role == "Booster": # Else was the user who sent the message a booster?
         user = match_booster_with_user(user)
-        print ("User to booster"+ user)
+        
         roomname = str(user) + str(current_user.username)
         roomtojoin = ChatRoom.query.filter(ChatRoom.roomname==roomname).first()
         print (roomtojoin)
@@ -76,7 +77,7 @@ def handle_join_room(room):
 def match_user_with_booster(user):
     print ("User sent MSG")
     order = Orders.query.filter(Orders.user_id==user.id).first()
-    print ("order: " + order.booster_assigned)
+    print ("booster assigned to order: " + order.booster_assigned)
     print ("SEnding to " + order.booster_assigned)
     return order.booster_assigned
 

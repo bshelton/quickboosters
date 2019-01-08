@@ -15,8 +15,8 @@
                             <i class="menu-icon icon-flash_on"></i><span>Actions</span><i class="accordion-icon fa fa-angle-left"></i>
                         </a>
                         <ul class="sub-menu">
-                            <li><a href="ui-alerts.html">Find Order</a></li>
-                            <li><a href="{{ url_for('adminbp.ui_buttons') }}">Current Orders</a></li>
+                            <li><a href="{{ url_for('boosterbp.booster_get_order') }}">Find Order</a></li>
+                            <li><a href="{{ url_for('boosterbp.currentorders') }}">Current Orders</a></li>
                             <li><a href="ui-icons.html">Stats</a></li>
                         </ul>
                     </li>
@@ -25,16 +25,11 @@
                                 <i class="menu-icon icon-flash_on"></i><span>Settings</span><i class="accordion-icon fa fa-angle-left"></i>
                             </a>
                             <ul class="sub-menu">
-                                <li><a href="{{url_for('adminbp.user_lookup') }}">Update Info</a></li>
+                                <li><a href="{{url_for('boosterbp.editprofile') }}">Update Info</a></li>
                             </ul>
                         </li>
 
                     <li class="menu-divider"></li>
-                    <li>
-                        <a href="../../../documentation/index.html">
-                            <i class="menu-icon icon-help_outline"></i><span>Documentation</span>
-                        </a>
-                    </li>
                     <li>
                         <a href="index.html">
                             <i class="menu-icon icon-public"></i><span>Changelog</span><span class="label label-danger">1.0</span>

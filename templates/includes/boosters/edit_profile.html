@@ -1,0 +1,63 @@
+<div class="page-content">
+            
+        <!-- Page Inner -->
+        <div class="page-inner no-page-title">
+            
+            <div id="main-wrapper">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="panel panel-white">
+                            <div class="panel-heading clearfix">
+                                <h4 class="panel-title">Edit User: {{user.username}}</h4>
+                            </div>
+                            <div class="panel-body">
+
+                                    <form class="form-signin" method="POST">                                    
+                                            {{ profileForm.hidden_tag() }}
+                                            {{ wtf.form_field(profileForm.email) }}
+                                            {{ wtf.form_field(profileForm.password) }}
+                                            {{ wtf.form_field(profileForm.confirm_password) }}
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                    </form>
+              
+                            </div>
+                        </div>
+                    </div>
+    
+            </div><!-- Main Wrapper -->
+    
+        </div><!-- /Page Inner -->
+        
+    </div><!-- /Page Content -->
+    
+    <script>
+                 $('#autocomplete').autocomplete({
+                        source: function(request, response) {
+                            $.ajax({
+                                type: "GET",
+                                    url: '/admin/user-search',
+                                    dataType: "json",
+                                    data: { search: $("#autocomplete").val() },
+    
+                                    success: function (data) {
+                                        
+                                    response($.map(data.results, function (item) {
+                                        
+                                        console.log(item.value);
+                                    return { label: item.name, value: item.value };
+                                }));
+                            },
+                                error: function (xhr, status, error) {
+                                     alert(error);
+                            }   
+                            });
+                        }
+                    });
+    
+                    $('#searchButton').click(function() {
+                        user = $('#autocomplete').val()
+    
+                        window.location.href = "/admin/user/profile/"+user;
+                    });
+                                
+        </script>
