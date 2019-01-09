@@ -25,6 +25,23 @@ def message_received(methods=['GET', 'POST']):
     print ('message received')
 
 
+@socketio.on('booster_msg', namespace='/booster')
+@login_required
+def handle_booster_msg(json, methods=['GET', 'POST']):
+    print (str(json))
+    roomname = 'Boosters_Chat'
+
+    try:
+        cr = ChatRoom(roomname=roomname)
+        db.session.add(cr)
+        db.session.commit()
+    except:
+        print ("Couldn't build Chatroom")
+    finally:
+        join_room(roomname)
+        socketio.emit('display_to_booster_chat', json, room=roomname, callback=message_received, namespace='/booster')
+
+
 @socketio.on('client_msg')
 @login_required
 def handle_client_msg(json, methods=['GET', 'POST']):

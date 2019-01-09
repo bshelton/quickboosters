@@ -52,7 +52,7 @@ import admin
 from admin import models, views
 
 import chat
-from chat import models, views
+from chat import models, views, boosterChatViews
 
 import views
 app.register_blueprint(views.mainbp)
@@ -61,6 +61,7 @@ app.register_blueprint(users.views.userbp)
 app.register_blueprint(booster.views.boosterbp)
 app.register_blueprint(admin.views.adminbp)
 app.register_blueprint(chat.views.chatbp)
+
 
 from forms import boostforms
 

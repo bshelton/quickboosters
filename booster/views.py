@@ -9,9 +9,10 @@ from passlib.hash import sha256_crypt
 boosterbp = Blueprint('boosterbp', __name__, template_folder='templates', static_folder='static/boosters')
 
 @boosterbp.route('/booster/dashboard')
+@login_required
 def booster_dashboard():
 
-    return render_template('/boosters/index.html')
+    return render_template('/boosters/index.html', username=current_user.username, user=current_user.username)
 
 @boosterbp.route('/booster/getorder')
 def booster_get_order():
@@ -48,7 +49,7 @@ def editprofile():
             try:
                 db.session.commit()
             finally: 
-                return render_template('/boosters/edit_profile.html', user=current_user, profileForm=profileForm)
+                return render_template('/boosters/edit_profile.html', username=current_user.username, user=current_user, profileForm=profileForm)
 
         if sha256_crypt.verify(password, user.password):
 
@@ -59,6 +60,6 @@ def editprofile():
             try:
                 db.session.commit()
             finally:
-                return render_template('/boosters/edit_profile.html', user=current_user, profileForm=profileForm)
+                return render_template('/boosters/edit_profile.html', username=current_user.username, user=current_user, profileForm=profileForm)
 
-    return render_template('/boosters/edit_profile.html', user=current_user, profileForm=profileForm)
+    return render_template('/boosters/edit_profile.html', username=current_user.username, user=current_user, profileForm=profileForm)
