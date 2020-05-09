@@ -1,0 +1,434 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}
+		Order
+{% endblock %}
+
+
+{% block content %}
+<div class="tab-header ftr-title">
+  <h2>Boost Purchase</h2>
+  <span class="line"></span>
+</div>
+
+            <div class="tab-container">
+            <div class="tab-alt">
+  <button class="tablinks hvr-underline-from-left" onclick="openCity(event, 'tab-one')" id="defaultOpen">Solo Boost</button>
+  <button class="tablinks hvr-underline-from-left" onclick="openCity(event, 'tab-two')">Duo Boost</button>
+  <button class="tablinks hvr-underline-from-left" onclick="openCity(event, 'tab-three')">Win Boost</button>
+  <button class="tablinks hvr-underline-from-left" onclick="openCity(event, 'tab-four')">Placements</button>
+  <!-- <button class="tablinks hvr-underline-from-left" onclick="openCity(event, 'tab-five')">Tab Five</button> -->
+</div>
+<div id="tab-one" class="tabcontent">
+ <div class="tab-grid-container">
+   <div class="tab-grid-item-one">
+     <div class="tab-item-top">
+      <div class="ftr-title"><h2>Current Rank</h2></div>
+       <img src="../static/img/silver_2.png">
+     </div>
+        <div class="input-container">
+
+          {{soloform.current_league}}
+        
+          {{soloform.current_division}}
+          {{soloform.current_lp}}
+          
+          <select class="input-field" type="text" name="carlist">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="opel">Opel</option>
+            <option value="audi">Audi</option>
+          </select>
+  </div>
+     <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+     <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+
+   </div>
+   <div class="tab-grid-item-two">
+     <div class="tab-item-top">
+       <div class="ftr-title"><h2>Desired Rank</h2></div>
+       <img src="../static/img/silver_2.png">
+     </div>
+        <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+     <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+   </div>
+   <div class="tab-grid-item-three">
+      <div class="ftr-title"><h2>Order Summary</h2></div>
+
+      <ul>
+        <li>Division Boost:</li>
+          <li>Total Cost:</li>
+      </ul>
+<div class="flex-content">
+  <div class="promo">
+      <input type="text" class="promoTerm" placeholder="Promotional Code">
+      <button type="submit" class="promoButton">
+        <span>Apply</span>
+     </button>
+   </div>
+
+<div class="buttons">
+                                 <a href="#" class="btn orange">Checkout!</a>
+                            </div>
+
+                            <div class="font-small">
+            <strong>Every account is VPN protected by our dedicated application.</strong><br><br>
+
+            Queues: <strong>Normal Draft, Normal Blind</strong>.<br><br>
+            Service available for North America, Europe West, Europe Nordic &amp; East, Brazil, Latin America, Russia, Turkey, Oceania, Korea and Japan!<br><br>
+
+        </div>
+</div>
+  
+
+   </div>
+
+ </div>
+</div>
+
+<div id="tab-two" class="tabcontent">
+  <div class="tab-grid-container">
+   <div class="tab-grid-item-one">
+     <div class="tab-item-top">
+      <div class="ftr-title"><h2>Current Rank</h2></div>
+       <img src="img/silver_2.png">
+     </div>
+        <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+     <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+     <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+
+   </div>
+   <div class="tab-grid-item-two">
+     <div class="tab-item-top">
+       <div class="ftr-title"><h2>Number of Wins</h2></div>
+     </div>
+  <div class="slidecontainer">
+<span id="f">1</span>
+  <input type="range" min="1" max="20" value="1" class="slider" id="id1">
+</div>
+   </div>
+   <div class="tab-grid-item-three">
+      <div class="ftr-title"><h2>Order Summary</h2></div>
+
+      <ul>
+        <li>Division Boost:</li>
+          <li>Total Cost:</li>
+      </ul>
+<div class="flex-content">
+  <div class="promo">
+      <input type="text" class="promoTerm" placeholder="Promotional Code">
+      <button type="submit" class="promoButton">
+        <span>Apply</span>
+     </button>
+   </div>
+
+<div class="buttons">
+                                 <a href="#" class="btn orange">Checkout!</a>
+                            </div>
+
+                            <div class="font-small">
+            <strong>Every account is VPN protected by our dedicated application.</strong><br><br>
+
+            Queues: <strong>Normal Draft, Normal Blind</strong>.<br><br>
+            Service available for North America, Europe West, Europe Nordic &amp; East, Brazil, Latin America, Russia, Turkey, Oceania, Korea and Japan!<br><br>
+
+        </div>
+</div>
+  
+
+   </div>
+
+ </div>
+</div>
+
+<div id="tab-three" class="tabcontent">
+ <div class="tab-grid-container">
+   <div class="tab-grid-item-one">
+     <div class="tab-item-top">
+      <div class="ftr-title"><h2>Summoner</h2></div>
+       
+     </div>
+    
+        <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+     <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+   <div class="input-container">
+    <div class="promo-srch">
+      <input type="text" class="promoTerm-srch" placeholder="Name">
+      <button type="submit" class="promoButton-srch">
+        <span>Search</span>
+     </button>
+   </div>
+ </div>
+<div class="slidecontainer">
+<span id="z">1</span>
+  <input type="range" min="1" max="10" value="1" class="slider margin-bottom" id="id3">
+</div>
+ <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+   </div>
+   <div class="tab-grid-item-two">
+     <div class="tab-item-top">
+       <div class="ftr-title"><h2>Current Rank</h2></div>
+       <img src="img/silver_2.png">
+     </div>
+        <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+     <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+   </div>
+   <div class="tab-grid-item-three">
+      <div class="ftr-title"><h2>Order Summary</h2></div>
+
+      <ul>
+        <li>Division Boost:</li>
+          <li>Total Cost:</li>
+      </ul>
+<div class="flex-content">
+  <div class="promo">
+      <input type="text" class="promoTerm" placeholder="Promotional Code">
+      <button type="submit" class="promoButton">
+        <span>Apply</span>
+     </button>
+   </div>
+
+<div class="buttons">
+                                 <a href="#" class="btn orange">Checkout!</a>
+                            </div>
+
+                            <div class="font-small">
+            <strong>Every account is VPN protected by our dedicated application.</strong><br><br>
+
+            Queues: <strong>Normal Draft, Normal Blind</strong>.<br><br>
+            Service available for North America, Europe West, Europe Nordic &amp; East, Brazil, Latin America, Russia, Turkey, Oceania, Korea and Japan!<br><br>
+
+        </div>
+</div>
+  
+
+   </div>
+
+ </div>
+</div>
+
+
+
+<div id="tab-four" class="tabcontent">
+ <div class="tab-grid-container">
+   <div class="tab-grid-item-one">
+     <div class="tab-item-top">
+      <div class="ftr-title"><h2>Current Rank</h2></div>
+       <img src="img/silver_2.png">
+     </div>
+        <div class="input-container">
+    <select class="input-field" type="text" name="carlist" form="carform">
+      <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="opel">Opel</option>
+  <option value="audi">Audi</option>
+    </select>
+  </div>
+
+   </div>
+   <div class="tab-grid-item-two">
+     <div class="tab-item-top">
+       <div class="ftr-title"><h2>Number of Games</h2></div>
+     </div>
+  <div class="slidecontainer">
+<span id="u">1</span>
+  <input type="range" min="1" max="10" value="1" class="slider" id="id2">
+</div>
+   </div>
+   <div class="tab-grid-item-three">
+      <div class="ftr-title"><h2>Order Summary</h2></div>
+
+      <ul>
+        <li>Division Boost:</li>
+          <li>Total Cost:</li>
+      </ul>
+<div class="flex-content">
+  <div class="promo">
+      <input type="text" class="promoTerm" placeholder="Promotional Code">
+      <button type="submit" class="promoButton">
+        <span>Apply</span>
+     </button>
+   </div>
+
+<div class="buttons">
+                                 <a href="#" class="btn orange">Checkout!</a>
+                            </div>
+
+                            <div class="font-small">
+            <strong>Every account is VPN protected by our dedicated application.</strong><br><br>
+
+            Queues: <strong>Normal Draft, Normal Blind</strong>.<br><br>
+            Service available for North America, Europe West, Europe Nordic &amp; East, Brazil, Latin America, Russia, Turkey, Oceania, Korea and Japan!<br><br>
+
+        </div>
+</div>
+  
+
+   </div>
+
+ </div>
+</div>
+<!-- <div id="tab-five" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div> -->
+</div>
+<div class="slider-flex">
+  <div class="slider-head">
+    <h2>Customer Feedback</h2>
+    <span class="line"></span></div>
+ <div class="slider-contain">
+<div id="slider-testim">
+<ul>
+  <li>
+  <div class="slider-container">
+    <p>“Very very great guy & definitely worth being recommended to others + used in the future. Certainly one of the cleanest boosts I've ever gotten!”
+</p>
+<h4>Lutero B. after boost to Gold I</h4>
+  </div>
+  </li>
+   <li>
+  <div class="slider-container">
+    <p>“He was amazing i watched every single game and made notes. I will purchase boost till Plat 5 tomorrow THX, Bro)”
+</p>
+<h4>Anton P. after boost to Gold V</h4>
+  </div>
+  </li>
+  <li>
+  <div class="slider-container">
+    <p>“Had a lot of fun watching my booster stream for me, and having him generally be a cool guy and explain things for me. I would recommend this service, and my booster to anyone.”
+</p>
+<h4>Joseph B. after boost to Silver V</h4>
+  </div>
+  </li>
+  <li>
+  <div class="slider-container">
+    <p>“He was amazing i watched every single game and made notes. I will purchase boost till Plat 5 tomorrow THX, Bro)”
+</p>
+<h4>Anton P. after boost to Gold V</h4>
+  </div>
+  </li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="works-flex">
+  <div class="flex-head">
+    <h2>How it works?</h2>
+    <span class="line"></span></div>
+      <div class="flex-item-one">
+        <ol>
+<li>Choose your Current tier and desired tier or wins amount.</li>
+<li>Press payment method button (PayPal or G2A) - you will be redirected to checkout page.</li>
+<li>After, you will be redirected back to our website to the “Account Creation” page. We’ll follow up with a confirmation email.</li>
+<li>After you receive the email, sign in with your brand-new account and head to your order and follow further instructions!</li>
+</ol>
+      </div>
+        <div class="flex-item-two"><p><strong>1.Who are we?</strong><br>
+In a nutshell, we are a group of experienced, helpful, and friendly high-rank League of Legends players. Our goal is to provide you our time and expertise as well-vetted League players the absolute most seamless order experience we possibly can. Everyone’s goals are different, and we do our absolute best to cater to each clients specific needs to the best of our ability. We both love playing League and helping our customers reach their own rating goals as best we can. The reason this works for us is because we adore this game and love helping other players succeed in reaching their rank-goals at a much, much quicker pace than normally possible.</p></div>
+        <div class="flex-item-three"><p><strong>1.Who are we?</strong><br>
+In a nutshell, we are a group of experienced, helpful, and friendly high-rank League of Legends players. Our goal is to provide you our time and expertise as well-vetted League players the absolute most seamless order experience we possibly can. Everyone’s goals are different, and we do our absolute best to cater to each clients specific needs to the best of our ability. We both love playing League and helping our customers reach their own rating goals as best we can. The reason this works for us is because we adore this game and love helping other players succeed in reaching their rank-goals at a much, much quicker pace than normally possible.</p></div>
+        <div class="flex-item-four"><p><strong>1.Who are we?</strong><br>
+In a nutshell, we are a group of experienced, helpful, and friendly high-rank League of Legends players. Our goal is to provide you our time and expertise as well-vetted League players the absolute most seamless order experience we possibly can. Everyone’s goals are different, and we do our absolute best to cater to each clients specific needs to the best of our ability. We both love playing League and helping our customers reach their own rating goals as best we can. The reason this works for us is because we adore this game and love helping other players succeed in reaching their rank-goals at a much, much quicker pace than normally possible.</p></div>
+        <div class="flex-item-five"><p><strong>1.Who are we?</strong><br>
+In a nutshell, we are a group of experienced, helpful, and friendly high-rank League of Legends players. Our goal is to provide you our time and expertise as well-vetted League players the absolute most seamless order experience we possibly can. Everyone’s goals are different, and we do our absolute best to cater to each clients specific needs to the best of our ability. We both love playing League and helping our customers reach their own rating goals as best we can. The reason this works for us is because we adore this game and love helping other players succeed in reaching their rank-goals at a much, much quicker pace than normally possible.</p></div>
+        <div class="flex-item-six"><p><strong>1.Who are we?</strong><br>
+In a nutshell, we are a group of experienced, helpful, and friendly high-rank League of Legends players. Our goal is to provide you our time and expertise as well-vetted League players the absolute most seamless order experience we possibly can. Everyone’s goals are different, and we do our absolute best to cater to each clients specific needs to the best of our ability. We both love playing League and helping our customers reach their own rating goals as best we can. The reason this works for us is because we adore this game and love helping other players succeed in reaching their rank-goals at a much, much quicker pace than normally possible.</p></div>
+
+
+</div>
+
+
+          <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+          <script src="../static/toggler.js"></script>
+          <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+           <script src="../static/tabalt.js"></script>
+           <script src="../static/slider.js"></script>
+
+           {% endblock %}
+

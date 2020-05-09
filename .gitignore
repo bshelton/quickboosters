@@ -4,8 +4,6 @@
 *.pyc
 .vscode
 __pycache__
-quickbooster-venv/
 venv/
-sqlite3.exe
-
+.env
 
