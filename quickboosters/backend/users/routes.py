@@ -9,8 +9,8 @@ from flask_socketio import send, emit, join_room
 import datetime
 
 from quickboosters import db, socketio
-from quickboosters.users.models import User
-from quickboosters.order.models import Orders, Orders_Attributes
+from quickboosters.backend.users.models import User
+from quickboosters.backend.order.models import Orders, Orders_Attributes
 
 userbp = Blueprint('userbp', __name__, template_folder='templates', static_folder='static')
 

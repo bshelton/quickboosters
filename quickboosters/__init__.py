@@ -13,6 +13,7 @@ db = SQLAlchemy()
 socketio = SocketIO()
 
 def create_app(environment):
+    print(environment)
     app = Flask(__name__)
     if environment == "development":
         devconfig = DevConfig()
@@ -28,37 +29,37 @@ def enable_login_mgr(app):
     login_manager.init_app(app)
     login_manager.login_view = 'userbp.login'
 
-    from quickboosters.users.models import User
+    from quickboosters.backend.users.models import User
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    from quickboosters.booster.models import Booster
+    from quickboosters.backend.booster.models import Booster
     def load_booster(booster_id):
         return Booster.query.get(int(booster_id))
 
 def enable_models():
-    from quickboosters.users import models
-    from quickboosters.order import models
-    from quickboosters.booster import models
-    from quickboosters.admin import models
-    from quickboosters.chat import models
+    from quickboosters.backend.users import models
+    from quickboosters.backend.order import models
+    from quickboosters.backend.booster import models
+    from quickboosters.backend.admin import models
+    from quickboosters.backend.chat import models
 
 
 def enable_routes():
-    from quickboosters.users import routes
-    from quickboosters.order import routes
-    from quickboosters.booster import routes
-    from quickboosters.admin import routes
-    from quickboosters.chat import routes
+    from quickboosters.backend.users import routes
+    from quickboosters.backend.order import routes
+    from quickboosters.backend.booster import routes
+    from quickboosters.backend.admin import routes
+    from quickboosters.backend.chat import routes
 
 def register_blueprints(app):
-    from quickboosters.admin.routes import adminbp
-    from quickboosters.order.routes import orderbp
-    from quickboosters.users.routes import userbp
-    from quickboosters.chat.routes import chatbp
-    from quickboosters.booster.routes import boosterbp
-    from quickboosters.routes import mainbp
+    from quickboosters.backend.admin.routes import adminbp
+    from quickboosters.backend.order.routes import orderbp
+    from quickboosters.backend.users.routes import userbp
+    from quickboosters.backend.chat.routes import chatbp
+    from quickboosters.backend.booster.routes import boosterbp
+    from quickboosters.backend.routes import mainbp
     app.register_blueprint(mainbp)
     app.register_blueprint(orderbp)
     app.register_blueprint(userbp)

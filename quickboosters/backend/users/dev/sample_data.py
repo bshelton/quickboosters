@@ -1,4 +1,4 @@
-from quickboosters.users.models import User
+from quickboosters.backend.users.models import User
 from quickboosters import db
 
 from passlib.hash import sha256_crypt

@@ -20,8 +20,9 @@ conf = os.getenv('FLASK_ENV')
 
 if conf == 'development':
     from quickboosters.config import DevConfig
-    from quickboosters.users.dev import sample_data
-    
+    from quickboosters.config import Config
+    from quickboosters.backend.users.dev import sample_data
+    print(Config().project_folder)
     print(DevConfig().verbose())
     app = create_app('development')
     app.app_context().push()

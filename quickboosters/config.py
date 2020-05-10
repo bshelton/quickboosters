@@ -3,9 +3,9 @@ import os
 
 
 class Config(object):
-    project_folder = os.path.expanduser('~/Desktop/quickboosters')
+    project_folder = os.path.dirname(os.path.realpath(__file__))
     DEBUG = False
-    load_dotenv(os.path.join(project_folder, '.env'))
+    load_dotenv(os.path.join(project_folder+'/env_files/', '.env'))
     SECRET_KEY = os.getenv('SECRET_KEY')
     DB_USER = ''
     DB_PASS = ''
@@ -13,6 +13,8 @@ class Config(object):
     DB_NAME = ''
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
+    def test_env(self):
+        print(self.project_folder)
     @property
     def SQLALCHEMY_DATABASE_URI(self):
         return 'mysql://{0}:{1}@{2}/{3}'.format(
