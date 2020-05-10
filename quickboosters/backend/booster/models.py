@@ -2,7 +2,7 @@ from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 
 import datetime
-from quickboosters import db\
+from quickboosters import db
 
 class Booster(UserMixin, db.Model):
     __tablename__ = 'boosters'

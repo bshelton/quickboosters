@@ -9,7 +9,7 @@ from passlib.hash import sha256_crypt
 from collections import OrderedDict
 import datetime
 
-from quickboosters.forms import boostforms
+from quickboosters.backend.forms import boostforms
 from quickboosters import db, socketio
 
 mainbp = Blueprint('mainbp', __name__, template_folder='templates', static_folder='static')

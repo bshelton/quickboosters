@@ -1,10 +1,12 @@
-from quickboosters import db, socketio
 from flask import Flask, render_template, redirect, url_for, Blueprint, request
 from flask_login import login_required, current_user
-from quickboosters.chat.models import ChatLog, ChatRoom
-from quickboosters.users.models import User
-from quickboosters.order.models import Orders
+
+from quickboosters import db, socketio
+from quickboosters.backend.chat.models import ChatLog, ChatRoom
+from quickboosters.backend.users.models import User
+from quickboosters.backend.order.models import Orders
 from flask_socketio import send, emit, join_room
+
 import datetime
 
 chatbp = Blueprint('chatbp', __name__, template_folder='templates', static_folder='static')

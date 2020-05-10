@@ -5,9 +5,9 @@ from sqlalchemy import func, and_
 import itertools
 import json
 
-from quickboosters.users.models import User
-from quickboosters.booster.models import Booster
-from quickboosters.order.models import Orders
+from quickboosters.backend.users.models import User
+from quickboosters.backend.booster.models import Booster
+from quickboosters.backend.order.models import Orders
 
 from quickboosters import db, socketio
 

@@ -3,8 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 
 import datetime
+
 from quickboosters import db
-from quickboosters.users.models import User
+from quickboosters.backend.users.models import User
 
 
 class ChatRoom(db.Model):

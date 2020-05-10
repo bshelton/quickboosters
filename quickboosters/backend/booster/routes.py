@@ -1,9 +1,11 @@
-from quickboosters import db
 from flask import Flask, Blueprint, request, render_template
 from flask_login import current_user,login_required
-from quickboosters.order.models import Orders
-from quickboosters.users.models import User
-from quickboosters.forms import boostforms
+
+from quickboosters import db
+from quickboosters.backend.order.models import Orders
+from quickboosters.backend.users.models import User
+from quickboosters.backend.forms import boostforms
+
 from passlib.hash import sha256_crypt
 
 boosterbp = Blueprint('boosterbp', __name__, template_folder='templates', static_folder='static/boosters')

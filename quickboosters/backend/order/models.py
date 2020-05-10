@@ -1,7 +1,7 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
-from quickboosters.users.models import User
+from quickboosters.backend.users.models import User
 
 import datetime
 from quickboosters import db
@@ -18,7 +18,7 @@ class Orders(db.Model):
     game = db.Column(db.String(30), nullable=False)
 
     
-    def __init__(order_type, user_id, order_amount, status, date_ordered, game, booster_assigned="None"):
+    def __init__(self,order_type, user_id, order_amount, status, date_ordered, game, booster_assigned="None"):
         self.order_type = order_type
         self.user_id = user_id
         self.order_amount = order_amount

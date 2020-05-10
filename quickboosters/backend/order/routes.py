@@ -3,7 +3,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from flask_sqlalchemy import SQLAlchemy, functools
 from flask_wtf import FlaskForm
 
-from quickboosters.forms import boostforms
+from quickboosters.backend.forms import boostforms
 
 orderbp = Blueprint('orderbp', __name__, template_folder='templates', static_folder='static')
 
@@ -40,7 +40,6 @@ def purchase():
         desired_lp = form.desired_lp.data
 
         price = determine_soloOrder_pricing(current_league, desired_league, current_division, desired_division)
-        print (price)
 
     return render_template('purchase.html', soloform=soloform)
 
