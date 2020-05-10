@@ -17,7 +17,6 @@ def create_app(environment):
     if environment == "development":
         devconfig = DevConfig()
         app.config.from_object(devconfig)
-        DevConfig().verbose()
         db.init_app(app)
         return app
 

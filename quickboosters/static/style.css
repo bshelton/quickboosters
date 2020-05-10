@@ -552,12 +552,15 @@ margin:2rem;
 }
 
 /*Footer Start*/
-.black {
+.page-footer {
 background-color: #0c0c0c;
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
 /*background-image: url(img/rocket.png);
 background-size: contain;
 background-repeat: no-repeat;*/
-padding: 5rem 0 5rem 5rem;
 }
 
 .foot-contain {

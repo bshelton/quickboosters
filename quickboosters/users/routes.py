@@ -23,27 +23,13 @@ def login():
         submitted_username = submitted_username.lower()
 
         user = User.query.filter(func.lower(User.username)==submitted_username).first()
-        print (user)
         if user:
             if user.username.lower() == submitted_username.lower():
-                if sha256_crypt.verify(form.password.data, user.password) and user.role == "Admin":
-                    login_user(user, remember=form.remember.data)
-                    return redirect(request.args.get('next') or url_for('mainbp.admindashboard'))
-
-                elif sha256_crypt.verify(form.password.data, user.password) and user.role == "client":
+                if sha256_crypt.verify(form.password.data, user.password):
                     login_user(user, remember=form.remember.data)
                     return redirect(request.args.get('next') or url_for('userbp.userdashboard'))
-
-                elif sha256_crypt.verify(form.password.data, user.password) and user.role == "Booster":
-                    login_user(user, remember=form.remember.data)
-                    return redirect(request.args.get('next') or url_for('boosterbp.booster_dashboard'))
-
                 else:
                      return '<h1> Wrong Password: Will Change Later </h1>'
-            else:
-                return '<h1> Invalid Login </h1>'
-        else:
-            return '<h1> Invalid Login </h1>'
     return render_template('login.html', form=form)
 
 

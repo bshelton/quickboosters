@@ -1,8 +1,6 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
-
 import datetime
-
 from quickboosters import db
 
 class User(UserMixin, db.Model):
