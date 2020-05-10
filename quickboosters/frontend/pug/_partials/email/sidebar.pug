@@ -1,0 +1,47 @@
+.c-sidebar.c-sidebar-light.c-sidebar-fixed.c-sidebar-lg-show#sidebar
+  .c-sidebar-brand.d-md-down-none
+    svg.c-sidebar-brand-full(width="118" height="46" alt="CoreUI Logo")
+      use(xlink:href="assets/brand/coreui-pro.svg#full")
+    svg.c-sidebar-brand-minimized(width="46" height="46" alt="CoreUI Logo")
+      use(xlink:href="assets/brand/coreui-pro.svg#signet")
+  ul.c-sidebar-nav
+    li.c-sidebar-nav-item
+      a.c-sidebar-nav-link.c-sidebar-nav-link-success(href="apps/email/compose.html")
+        svg.c-sidebar-nav-icon
+          use(xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-pencil")
+        | New email
+    li.c-sidebar-nav-item
+      a.c-sidebar-nav-link(href='apps/email/inbox.html')
+        svg.c-sidebar-nav-icon
+          use(xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-inbox")
+        |  Inbox
+        span.badge.badge-danger 4
+    li.c-sidebar-nav-item
+      a.c-sidebar-nav-link(href='#')
+        svg.c-sidebar-nav-icon
+          use(xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-star")
+        |  Stared
+    li.c-sidebar-nav-item
+      a.c-sidebar-nav-link(href='#')
+        svg.c-sidebar-nav-icon
+          use(xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-paper-plane")
+        |  Sent
+    li.c-sidebar-nav-item
+      a.c-sidebar-nav-link(href='#')
+        svg.c-sidebar-nav-icon
+          use(xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-trash")
+        |  Trash
+    li.c-sidebar-nav-item
+      a.c-sidebar-nav-link(href='#')
+        svg.c-sidebar-nav-icon
+          use(xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-bookmark")
+        |  Important
+        span.badge.badge-info 25
+    li.c-sidebar-nav-item.mt-auto
+      a.c-sidebar-nav-link(href=ajax ? 'main.html' : 'index.html')
+        svg.c-sidebar-nav-icon
+          use(xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer")
+        |  Dashboard
+        span.badge.badge-info NEW
+  button.c-sidebar-minimizer.c-class-toggler(type="button" data-target="_parent" data-class="c-sidebar-unfoldable")
+
