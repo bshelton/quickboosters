@@ -5,7 +5,7 @@ from flask_admin import Admin
 import datetime
 
 from quickboosters import db
-from quickboosters.backend.users.models import User
+from quickboosters.api.users.models import User
 
 
 class ChatRoom(db.Model):

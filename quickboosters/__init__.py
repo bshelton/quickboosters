@@ -29,40 +29,21 @@ def enable_login_mgr(app):
     login_manager.init_app(app)
     login_manager.login_view = 'userbp.login'
 
-    from quickboosters.backend.users.models import User
+    from quickboosters.api.users.models import User
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    from quickboosters.backend.booster.models import Booster
-    def load_booster(booster_id):
-        return Booster.query.get(int(booster_id))
 
 def enable_models():
-    from quickboosters.backend.users import models
-    from quickboosters.backend.order import models
-    from quickboosters.backend.booster import models
-    from quickboosters.backend.admin import models
-    from quickboosters.backend.chat import models
+    from quickboosters.api.users import models
+    from quickboosters.api.chat import models
 
 
 def enable_routes():
-    from quickboosters.backend.users import routes
-    from quickboosters.backend.order import routes
-    from quickboosters.backend.booster import routes
-    from quickboosters.backend.admin import routes
-    from quickboosters.backend.chat import routes
+    #To do
+    return ""
 
 def register_blueprints(app):
-    from quickboosters.backend.admin.routes import adminbp
-    from quickboosters.backend.order.routes import orderbp
-    from quickboosters.backend.users.routes import userbp
-    from quickboosters.backend.chat.routes import chatbp
-    from quickboosters.backend.booster.routes import boosterbp
-    from quickboosters.backend.routes import mainbp
+    from quickboosters.api.routes import mainbp
     app.register_blueprint(mainbp)
-    app.register_blueprint(orderbp)
-    app.register_blueprint(userbp)
-    app.register_blueprint(boosterbp)
-    app.register_blueprint(adminbp)
-    app.register_blueprint(chatbp)
