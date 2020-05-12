@@ -45,5 +45,7 @@ def enable_routes():
     return ""
 
 def register_blueprints(app):
-    from quickboosters.api.routes import mainbp
-    app.register_blueprint(mainbp)
+    return ""
+
+def testas():
+    return 'test'

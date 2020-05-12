@@ -13,9 +13,11 @@ from quickboosters import (
     enable_login_mgr, 
     enable_models, 
     enable_routes,
-    register_blueprints
+    register_blueprints,
+    testas
 )
 
+print(testas())
 conf = os.getenv('FLASK_ENV')
 
 if conf == 'development':
@@ -36,5 +38,7 @@ enable_models()
 enable_routes()
 manager = Manager(app)
 register_blueprints(app)
+
+
 
 db.create_all(app=app)
