@@ -1,7 +1,7 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
-from quickboosters.backend.users.models import User
+from quickboosters.api.users.models import User
 
 import datetime
 from quickboosters import db

@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_script import Manager, Server
 import os
 import sys
 from dotenv import load_dotenv
@@ -13,22 +12,22 @@ from quickboosters import (
     enable_login_mgr, 
     enable_models, 
     enable_routes,
-    register_blueprints,
-    testas
+    register_blueprints
 )
 
-print(testas())
 conf = os.getenv('FLASK_ENV')
 
 if conf == 'development':
-    from quickboosters.config import DevConfig
-    from quickboosters.config import Config
-    from quickboosters.api.users.dev import sample_data
-    print(Config().project_folder)
+    print('hi')
+    try:
+        from quickboosters.config import DevConfig
+       
+    except Exception as e:
+        print(e)
+
     print(DevConfig().verbose())
     app = create_app('development')
     app.app_context().push()
-    sample_data.create_user()
 else:
     app = create_app('prod')
 
@@ -36,9 +35,6 @@ enable_extensions(app)
 enable_login_mgr(app)
 enable_models()
 enable_routes()
-manager = Manager(app)
 register_blueprints(app)
-
-
 
 db.create_all(app=app)

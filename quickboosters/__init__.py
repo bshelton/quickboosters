@@ -34,18 +34,17 @@ def enable_login_mgr(app):
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-
 def enable_models():
     from quickboosters.api.users import models
     from quickboosters.api.chat import models
 
-
 def enable_routes():
     #To do
-    return ""
+    from quickboosters.api.users import routes
 
 def register_blueprints(app):
-    return ""
+    from quickboosters.api.users import auth
+    app.register_blueprint(auth)
 
 def testas():
     return 'test'
