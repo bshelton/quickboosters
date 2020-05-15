@@ -18,16 +18,16 @@ from quickboosters import (
 conf = os.getenv('FLASK_ENV')
 
 if conf == 'development':
-    print('hi')
     try:
         from quickboosters.config import DevConfig
-       
+        from quickboosters.api.users.dev.sample_data import create_user
     except Exception as e:
         print(e)
-
+    
     print(DevConfig().verbose())
     app = create_app('development')
     app.app_context().push()
+    create_user()
 else:
     app = create_app('prod')
 

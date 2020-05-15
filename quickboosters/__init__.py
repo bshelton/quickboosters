@@ -46,5 +46,3 @@ def register_blueprints(app):
     from quickboosters.api.users import auth
     app.register_blueprint(auth)
 
-def testas():
-    return 'test'
