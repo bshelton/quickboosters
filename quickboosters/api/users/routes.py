@@ -90,3 +90,19 @@ def make_admin(username):
             return jsonify(user_dict)
     except Exception as e:
         print(e)
+
+
+@auth.route('/users/delete/<username>', methods=['DELETE'])
+def deleteuser(username):
+    """
+    Delete user
+    """
+    user = User.query.filter_by(username=username).first()
+
+    try:
+        db.session.delete(user)
+        db.session.commit()
+        return 'User ' + user.username + ' was deleted from the database'
+    except Exception as e:
+        print(e)
+    
