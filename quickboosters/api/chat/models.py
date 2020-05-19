@@ -2,6 +2,7 @@ from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 
+
 import datetime
 
 from quickboosters import db

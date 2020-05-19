@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from quickboosters.config import DevConfig
 from quickboosters.api.users.dev.sample_data import create_user
 from quickboosters.api.users.dev.sample_data import create_order
+from quickboosters.api.users.dev.sample_data import create_log,create_room
 from quickboosters import (
     create_app,
     db,
@@ -24,7 +25,7 @@ if conf == 'development':
     app = create_app('development')
     app.app_context().push()
     db.create_all(app=app)
-    create_order()
+    create_log()
 else:
     app = create_app('prod')
 

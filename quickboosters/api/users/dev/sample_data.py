@@ -1,7 +1,7 @@
 from quickboosters.api.users.models import User
 from quickboosters import db
 from quickboosters.api.order.models import Orders
-from quickboosters.api.chat.models import ChatLog
+from quickboosters.api.chat.models import ChatLog,ChatRoom
 
 from passlib.hash import sha256_crypt
 import datetime
@@ -22,10 +22,16 @@ def create_order():
   db.session.add(order)
   db.session.commit()
 
-def Chatlog():
-    Chatlog = ChatLog(message='message',userfrom='user.username',created_date=datetime.datetime.now())
-    print(ChatLog)
-    db.session.add(Chatlog)
+def create_log():
+    log = ChatLog(message='message',userfrom='Derek',created_date=datetime.datetime.now(),room='bronze')
+    print(log)
+    db.session.add(log)
+    db.session.commit()
+
+def create_room():
+    room = ChatRoom('bronze')
+    print(room)
+    db.session.add(room)
     db.session.commit()
 
 
