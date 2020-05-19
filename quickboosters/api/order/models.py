@@ -12,18 +12,17 @@ class Orders(db.Model):
     order_type = db.Column(db.String(30), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     order_amount = db.Column(db.Float, nullable=False)
-    booster_assigned = db.Column(db.String(20), db.ForeignKey('users.username'))
+    # booster_assigned = db.Column(db.String(20), db.ForeignKey('users.username'))
     date_ordered = db.Column(db.Date(), nullable=False)
     status = db.Column(db.String(30), nullable=False)
     game = db.Column(db.String(30), nullable=False)
 
     
-    def __init__(self,order_type, user_id, order_amount, status, date_ordered, game, booster_assigned="None"):
+    def __init__(self,order_type, user_id, order_amount, status, date_ordered, game):
         self.order_type = order_type
         self.user_id = user_id
         self.order_amount = order_amount
         self.game = game
-        self.booster_assigned = booster_assigned
         self.status = status
         self.date_ordered = date_ordered
 

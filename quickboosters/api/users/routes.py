@@ -6,6 +6,7 @@ from quickboosters.api.users.models import User
 from passlib.hash import sha256_crypt
 from quickboosters import db
 from quickboosters.api.users.forms import AccountDeactivation
+from quickboosters.api.order.models import Orders
 
 
 @auth.route('/users/all', methods=['GET'])
@@ -105,4 +106,3 @@ def deleteuser(username):
         return 'User ' + user.username + ' was deleted from the database'
     except Exception as e:
         print(e)
-    

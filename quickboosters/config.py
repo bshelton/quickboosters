@@ -32,11 +32,12 @@ class Config(object):
                 host,
                 db_name)
 
-class ProductionConfig(Config):
+class ProductionConfig(Config): 
     DEBUG = False
 
 class DevConfig(Config):
     DEBUG = True
+    SQLALCHEMY_ECHO = True
     DB_USER = os.getenv('DB_USER_DEV')
     DB_PASS = os.getenv('DB_PASS_DEV')
     DB_HOST = os.getenv('DB_HOST_DEV')
