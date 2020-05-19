@@ -1,22 +1,11 @@
-from flask_socketio import SocketIO
+from flask import jsonify
 from quickboosters.api.chat.models import ChatLog
+from quickboosters.api.chat import chat
 
-
-
-app = Flask(__name__)
-socketio = SocketIO(app)
-
-#??????????@app.route('/chatlog')
-#def sessions():
-   # return 
-
-def messageReceived(methods=['GET', 'POST']):
-    print('message was received!')
-
-@socketio.on('my event')
-def handle_my_custom_event(json, methods=['GET', 'POST']):
-    print('received my event: ' + str(json))
-    socketio.emit('my response', json, callback=messageReceived)
-
-if __name__ == '__main__':
-    socketio.run(app, debug=True)
+@chat.route('/chat', methods=['GET'])
+def get_all_chat_logs():
+    chatlogs_dict = {} 
+    chat = getchat.query.filter_by().all()
+for chat in getchat:
+    chatlogs_dict[chat] {"ID": chat.id, "message": chat.message, "Userfrom": chat.userfrom, "Created_Date": chat.Created_Date, "Room": chat.room}
+return jsonify(chatlogs_dict)
