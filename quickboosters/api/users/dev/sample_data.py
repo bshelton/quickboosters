@@ -23,7 +23,7 @@ def create_order():
   db.session.commit()
 
 def Chatlog():
-    Chatlog = ChatLog(message='message',userfrom='user.username',created_date=datetime.datetime.now(),)
+    Chatlog = ChatLog(message='message',userfrom='user.username',created_date=datetime.datetime.now())
     print(ChatLog)
     db.session.add(Chatlog)
     db.session.commit()
