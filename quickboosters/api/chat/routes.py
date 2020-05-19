@@ -1,6 +1,8 @@
 from flask_socketio import SocketIO
 from quickboosters.api.chat.models import ChatLog
 
+
+
 app = Flask(__name__)
 socketio = SocketIO(app)
 
