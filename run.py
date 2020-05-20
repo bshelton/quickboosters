@@ -34,3 +34,5 @@ enable_models()
 enable_routes()
 register_blueprints(app)
 
+if __name__ == "__main__":
+    app.run()
