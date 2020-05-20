@@ -43,7 +43,6 @@ class Orders_Attributes(db.Model):
         self.game_region = game_region
 
 class Order_Status(Enum):
-    __tablename__ = 'order_status'
     not_started = 1
     in_progress = 2
     complete = 3
