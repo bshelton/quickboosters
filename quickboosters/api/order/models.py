@@ -1,7 +1,6 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
-from flask_admin import Admin
-from quickboosters.api.users.models import User
+from enum import Enum
 
 import datetime
 from quickboosters import db
@@ -40,3 +39,7 @@ class Orders_Attributes(db.Model):
         self.game_password = game_password
         self.game_region = game_region
 
+class Order_Status(Enum):
+    not_started = 1
+    in_progress = 2
+    complete = 3
