@@ -22,7 +22,7 @@ class ChatLog(db.Model):
     message = db.Column(db.String(100), nullable=False)
     userfrom = db.Column(db.String(20), db.ForeignKey('users.username'), nullable=False)
     created_date = db.Column(db.DateTime(timezone=True))
-    gi
+    room = db.Column(db.String(20), db.ForeignKey('chatroom.roomname'))
 
     def __init__(self, message, userfrom, created_date, room="None"):
         self.message = message
