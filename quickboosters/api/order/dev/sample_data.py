@@ -15,7 +15,7 @@ def create_order():
   db.session.add(order)
   db.session.commit()
 
-  def order_status():
+def order_status():
     status = Order_Status('status': order_status.enum, 'order_id': order_status.id, 'game': order_status.game)
     print(status)
     db.session.add(status)
