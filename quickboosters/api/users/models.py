@@ -25,3 +25,5 @@ class Role(db.Model):
     def __init__(self, name):
         self.name = name
 
+ #class UserRole(db.Model):
+   # __tablename__ = 'UserRole'
