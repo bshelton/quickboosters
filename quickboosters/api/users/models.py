@@ -25,12 +25,13 @@ class Role(db.Model):
     def __init__(self, name):
         self.name = name
 
- class UserRole(db.Model):
-    __tablename__ = 'UserRole'
-    id = int(users.id)
-    user_id = (users.username)
-    role_id = (role.roles)
-    def __init__(self, id, user_id, role_id)
-        self.id = id
+
+class UsertoRole(db.Model):
+    __tablename__ = 'user_to_role'
+    id = db.Column(db.Integer(), primary_key=True)
+    user_id = db.Column(db.Integer(), db.ForeignKey('users.id'), nullable=False)
+    role_id = db.Column(db.Integer(), db.ForeignKey('roles.id'), nullable=False)
+
+    def __init__(self, user_id, role_id):
         self.user_id = user_id
         self.role_id = role_id

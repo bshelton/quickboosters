@@ -1,11 +1,5 @@
 from quickboosters.api.users.models import User
 from quickboosters import db
-from quickboosters.api.order.models import Orders
-<<<<<<< HEAD
-from quickboosters.api.chat.models import ChatLog,ChatRoom
-=======
-
->>>>>>> 90ae51dea3f67433dbf26970c07216f97ad7b894
 
 from passlib.hash import sha256_crypt
 import datetime
@@ -20,28 +14,8 @@ def create_user():
     except Exception as e:
         print(str(e))
 
-<<<<<<< HEAD
-def create_order():
-  order = Orders(order_type="solo_boost",user_id='1',order_amount=69.42,status='completed',date_ordered=datetime.datetime.now(),game='league of legends')
-  print(order.user_id)
-  db.session.add(order)
-  db.session.commit()
-
-def create_log():
-    log = ChatLog(message='message',userfrom='Derek',created_date=datetime.datetime.now(),room='bronze')
-    print(log)
-    db.session.add(log)
-    db.session.commit()
-
-def create_room():
-    room = ChatRoom('bronze')
-    print(room)
-    db.session.add(room)
-    db.session.commit()
 
 
-=======
->>>>>>> 90ae51dea3f67433dbf26970c07216f97ad7b894
 
 
 
