@@ -25,3 +25,12 @@ class Role(db.Model):
     def __init__(self, name):
         self.name = name
 
+ class UserRole(db.Model):
+    __tablename__ = 'UserRole'
+    id = int(users.id)
+    user_id = (users.username)
+    role_id = (role.roles)
+    def __init__(self, id, user_id, role_id)
+        self.id = id
+        self.user_id = user_id
+        self.role_id = role_id
