@@ -5,6 +5,8 @@ import datetime
 import jwt
 
 from quickboosters.api.users.model import User
+from quickboosters.api.users.interface import UserInterface
+from quickboosters.api.users.schema import UserSchema
 from quickboosters.api.users.service import UserService
 from quickboosters.config import Config
 
@@ -51,11 +53,31 @@ def login_and_generate_token() -> str:
         if user and _validate_password(user.id, password):
             token = _encodeAuthToken(user.id)
         return jsonify({
-            'status': 'success',
+            'status': 'Success',
             'auth_token': token
         })
     except Exception as e:
         return jsonify({
-            'status': 'Failure',
+            'status': 'failure',
             'error': e
         })
+
+
+@auth.route('/auth/register', methods=['POST'])
+def register_user():
+    """An API route to create a new user.
+
+    Returns the new created user.
+
+    Returns:
+        str: A JSON encoded response.
+    """
+    try:
+        user_interface: UserInterface = UserSchema().load(request.get_json(force=True))
+        return UserSchema.dumps(UserService.create(user_interface))
+    except Exception as e:
+        return jsonify({
+            'status': 'failure',
+            'error': e
+        })
+
