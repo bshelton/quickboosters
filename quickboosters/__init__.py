@@ -1,16 +1,12 @@
-from flask import Flask, redirect, request
-from flask_migrate import Migrate
-from flask_bootstrap import Bootstrap
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_login import LoginManager
+from flask_cors import CORS
 
-from passlib.hash import sha256_crypt
-from flask_socketio import SocketIO, send, emit, join_room
+from quickboosters.config import DevConfig
 
-from quickboosters.config import ProductionConfig, DevConfig
+db: SQLAlchemy = SQLAlchemy()
 
-db = SQLAlchemy()
-socketio = SocketIO()
 
 def create_app(environment):
     print(environment)
@@ -19,30 +15,30 @@ def create_app(environment):
         devconfig = DevConfig()
         app.config.from_object(devconfig)
         db.init_app(app)
+
+        with app.app_context():
+            enable_extensions(app)
+            enable_login_mgr(app)
+            register_blueprints(app)
         return app
 
-def enable_extensions(app):
-    Bootstrap(app)
 
-def enable_login_mgr(app):
+def enable_extensions(app: Flask):
+    CORS(app)
+
+
+def enable_login_mgr(app: Flask):
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = 'userbp.login'
 
-    from quickboosters.api.users.models import User
+    from quickboosters.api.users.model import User
+
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-def enable_models():
-    from quickboosters.api.users import models
-    from quickboosters.api.chat import models
-
-def enable_routes():
-    #To do
-    from quickboosters.api.users import routes
 
 def register_blueprints(app):
-    from quickboosters.api.users import auth
+    from quickboosters.api.users.controller import auth
     app.register_blueprint(auth)
-
