@@ -1,7 +1,7 @@
 from flask_login import UserMixin
 from flask_sqlalchemy import SQLAlchemy
-from quickboosters.api.order.models import Orders
-from quickboosters.api.order.models import Order_Status
+from quickboosters.api.order.model import Orders
+from quickboosters.api.order.model import Order_Status
 
 import datetime
 from quickboosters import db
