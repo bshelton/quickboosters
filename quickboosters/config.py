@@ -7,18 +7,17 @@ class Config(object):
     DEBUG = False
     load_dotenv(os.path.join(project_folder+'/env_files/', '.env'))
     SECRET_KEY = os.getenv('SECRET_KEY')
+    JWT_SECRET = os.getenv('JWT_SECRET')
     DB_USER = ''
     DB_PASS = ''
     DB_HOST = ''
     DB_NAME = ''
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
-    def test_env(self):
-        print(self.project_folder)
     @property
     def SQLALCHEMY_DATABASE_URI(self):
         return 'mysql://{0}:{1}@{2}/{3}'.format(
-            self.DB_USER, 
+            self.DB_USER,
             self.DB_PASS,
             self.DB_HOST,
             self.DB_NAME
@@ -27,13 +26,15 @@ class Config(object):
     @SQLALCHEMY_DATABASE_URI.setter
     def SQLALCHEMY_DATABASE_URI(self, user, password, host, db_name):
         return 'mysql://{0}:{1}@{2}/{3}'.format(
-                user, 
+                user,
                 password,
                 host,
                 db_name)
 
-class ProductionConfig(Config): 
+
+class ProductionConfig(Config):
     DEBUG = False
+
 
 class DevConfig(Config):
     DEBUG = True
@@ -42,7 +43,7 @@ class DevConfig(Config):
     DB_PASS = os.getenv('DB_PASS_DEV')
     DB_HOST = os.getenv('DB_HOST_DEV')
     DB_NAME = os.getenv('DB_NAME_DEV')
-    
+
     @property
     def SQLALCHEMY_DATABASE_URI(self):
         return 'mysql://{0}:{1}@{2}/{3}'.format(
