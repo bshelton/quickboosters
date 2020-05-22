@@ -1,6 +1,7 @@
 import os
 
 from quickboosters.config import DevConfig
+from quickboosters.api.roles.dev.sample_data import create_role
 from quickboosters import (
     create_app,
     db

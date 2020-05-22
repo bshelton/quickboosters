@@ -4,8 +4,8 @@ import os
 
 class Config(object):
     project_folder = os.path.dirname(os.path.realpath(__file__))
-    DEBUG = False
-    load_dotenv(os.path.join(project_folder+'/env_files/', '.env'))
+    DEBUG = True
+    load_dotenv(os.path.join(project_folder + '/env_files/', '.env'))
     SECRET_KEY = os.getenv('SECRET_KEY')
     JWT_SECRET = os.getenv('JWT_SECRET')
     DB_USER = ''

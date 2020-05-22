@@ -13,5 +13,5 @@ class UserInterface(TypedDict, total=False):
     username: str
     email: str
     password: str
-    role: RoleTypes
+    role: str
     created_on: datetime
