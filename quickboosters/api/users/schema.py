@@ -9,5 +9,7 @@ class UserSchema(Schema):
 
     user_id = fields.Integer(attribute="user_id")
     username = fields.String(attribute="username")
+    password = fields.String(attribute="password")
     email = fields.String(attribute="email")
     role = fields.String(attribute="role")
+    created_on = fields.DateTime()

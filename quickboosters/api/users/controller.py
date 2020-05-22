@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from flask import jsonify, request, Blueprint
+from sqlalchemy.exc import IntegrityError
 import datetime
 import jwt
 
@@ -15,21 +16,14 @@ auth = Blueprint('auth', __name__)
 
 def _encodeAuthToken(user_id: User) -> jwt:
     now: datetime = datetime.datetime.now()
-    payload = {
-        'expiration': now + datetime.timedelta(days=0, seconds=60),
-        'iat': now,
+
+    payload = { 
+        'exp': now + datetime.timedelta(days=0, seconds=5),
+        'iat': datetime.datetime.utcnow(),
         'sub': user_id
     }
-    token: jwt = jwt.encode(payload, Config().JWT_SECRET, algorithm='HS256')
+    token = jwt.encode(payload, 'secret', algorithm='HS256')
     return token
-
-
-def _validate_password(user_id: int, password: str) -> bool:
-
-    if UserService().get_by_id(user_id).password == password:
-        return True
-    else:
-        return False
 
 
 @auth.route('/auth/login', methods=['POST'])
@@ -46,15 +40,14 @@ def login_and_generate_token() -> str:
 
     username: str = req_json['username']
     password: str = req_json['password']
-
     user = UserService().get_by_username(username)
 
     try:
-        if user and _validate_password(user.id, password):
+        if user and user.check_password(password):
             token = _encodeAuthToken(user.id)
         return jsonify({
             'status': 'Success',
-            'auth_token': token
+            'auth_token': token.decode('UTF-8')
         })
     except Exception as e:
         return jsonify({
@@ -72,12 +65,20 @@ def register_user():
     Returns:
         str: A JSON encoded response.
     """
+
     try:
-        user_interface: UserInterface = UserSchema().load(request.get_json(force=True))
-        return UserSchema.dumps(UserService.create(user_interface))
+        schema = UserSchema()
+        new_user = UserService().create(schema.load(request.get_json()))
+        return {
+            "user": new_user.username
+        }
+    except IntegrityError:
+        return jsonify({
+            'status': 'failure',
+            'error': request.get_json()['username'] + ' already taken.'
+        })
     except Exception as e:
         return jsonify({
             'status': 'failure',
             'error': e
         })
-

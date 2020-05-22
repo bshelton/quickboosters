@@ -1,6 +1,7 @@
 from typing import List
 
 from quickboosters.api.users.interface import UserInterface
+from quickboosters.api.users.schema import UserSchema
 from quickboosters.api.users.model import User
 
 from quickboosters import db
@@ -37,7 +38,7 @@ class UserService:
         return User.query.filter(User.username == username).first()
 
     @staticmethod
-    def create(attributes: UserInterface) -> User:
+    def create(attributes: UserSchema) -> User:
         """Creates a new user.
 
         Parameters
@@ -54,6 +55,7 @@ class UserService:
                           password=attributes["password"],
                           role=attributes["role"],
                           created_on=attributes["created_on"])
+
         db.session.add(user)
         db.session.commit()
         return user

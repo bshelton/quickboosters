@@ -1,14 +1,18 @@
 from __future__ import annotations
+import datetime
 
 from quickboosters import db
 from quickboosters.api.users.interface import UserInterface
 
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import DateTime
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
+from sqlalchemy.ext.hybrid import hybrid_property
 
 
 class User(UserMixin, db.Model):
@@ -19,9 +23,32 @@ class User(UserMixin, db.Model):
     id = Column(Integer(), primary_key=True)
     username = Column(String(20), unique=True, nullable=False)
     email = Column(String(50), unique=True, nullable=False)
-    password = Column(String(80), nullable=False)
-    role = relationship("Role")
-    created_on = Column(DateTime(), nullable=False)
+    _password = Column("password", String(255), nullable=False)
+    role = Column(String(80))
+    created_on = Column(DateTime(), default=datetime.datetime.utcnow, nullable=False)
+
+    def __init__(self, username, email, password, role, created_on):
+        self.username = username
+        self.email = email
+        self._password = generate_password_hash(password)
+        self.role = role
+        self.created_on = created_on
+
+    def check_password(self, password) -> bool:
+        """Checks for a valid password
+
+        Returns:
+            bool: The Boolean depending if passwords match
+        """
+        return check_password_hash(self._password, password)
+
+    @hybrid_property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def password(self, cleartext):
+        self._password = generate_password_hash(cleartext)
 
     def update(self: User, interface: UserInterface) -> User:
         """Update to an existing user with a UserInterface
