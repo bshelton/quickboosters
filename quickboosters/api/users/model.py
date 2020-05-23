@@ -10,8 +10,6 @@ from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import DateTime
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property
 
 
@@ -37,9 +35,15 @@ class User(UserMixin, db.Model):
     def check_password(self, password) -> bool:
         """Checks for a valid password
 
+        Parameters
+        ----------
+        password: str
+            The string to validate.
+
         Returns:
-            bool: The Boolean depending if passwords match
+            bool: The Boolean depending if passwords match.
         """
+
         return check_password_hash(self._password, password)
 
     @hybrid_property
