@@ -38,6 +38,15 @@ class UserService:
         return User.query.filter(User.username == username).first()
 
     @staticmethod
+    def get_by_email(email: str) -> User:
+        """Retrieve one user matching a given email.
+
+        Returns:
+            User: One user with email given
+        """
+        return User.query.filter(User.email == email).first()
+
+    @staticmethod
     def create(attributes: UserSchema) -> User:
         """Creates a new user.
 

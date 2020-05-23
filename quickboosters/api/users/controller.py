@@ -4,9 +4,11 @@ from flask import jsonify, request
 from sqlalchemy.exc import IntegrityError
 
 from quickboosters.api.users.auth import auth
-from quickboosters.api.users.auth import login_required
+from quickboosters.api.users.helper import send_password_reset_email
+from quickboosters.api.users.helper import send_email
 from quickboosters.api.users.auth import encodeAuthToken
-from quickboosters.api.users.auth import decodeAuthToken
+from quickboosters.api.users.model import User
+from quickboosters.api.users.interface import UserInterface
 from quickboosters.api.users.schema import UserSchema
 from quickboosters.api.users.service import UserService
 
@@ -37,7 +39,7 @@ def login_and_generate_token() -> str:
     except Exception as e:
         return jsonify({
             'status': 'failure',
-            'error': e
+            'error': str(e)
         })
 
 
@@ -65,17 +67,62 @@ def register_user():
     except Exception as e:
         return jsonify({
             'status': 'failure',
-            'error': e
+            'error': str(e)
         })
 
-@auth.route('/auth/checktoken', methods=["POST"])
-def check():
+
+@auth.route('/password-reset', methods=['POST'])
+def reset_password_request():
+    """Sends an email with a JWT token"""
+
+    url = request.host_url + 'password-reset/'
+
     data = request.get_json()
-    print(decodeAuthToken(data['auth_token']))
-    return "token test"
+    email = data['email']
+    user = UserService().get_by_email(email)
+    try:
+        if user:
+            send_password_reset_email(user, url)
+
+            return jsonify({
+                'status': 'success',
+                'message': 'Email sent to: ' + email
+            })
+    except Exception as e:
+        return jsonify({
+            'status': 'failure',
+            'error': str(e)
+        })
 
 
-@auth.route('/auth/needtoken', methods=["POST"])
-@login_required
-def need_token():
-    return "You made it!"
+@auth.route('/password-reset/<token>', methods=['POST'])
+def reset_password(token):
+    """Resets a users password given a valid token.
+
+    Parmaeters
+    ----------
+    token:
+        The JWT that was sent to the users email.
+    """
+    data = request.get_json()
+
+    user = User.verify_reset_password_token(token)
+    updates = UserInterface()
+    updates['password'] = data['new_password']
+    try:
+        if user:
+            UserService().update(user, updates)
+
+            send_email("[QuickBoosters] Password Reset",
+                       "password reset successfully",
+                       "noreply@quickboosters.com",
+                       user.email)
+            return jsonify({
+                'status': 'success',
+                'message': 'Password successfully updated'
+            })
+    except Exception as e:
+        return jsonify({
+            'status': 'failure',
+            'message': str(e)
+        })

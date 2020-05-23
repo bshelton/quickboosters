@@ -3,8 +3,6 @@ from __future__ import absolute_import
 from datetime import datetime
 from typing import TypedDict
 
-from quickboosters.api.roles.model import RoleTypes
-
 
 class UserInterface(TypedDict, total=False):
     """Defines types that make a user."""
