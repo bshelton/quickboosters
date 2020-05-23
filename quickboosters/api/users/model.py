@@ -2,6 +2,7 @@ from __future__ import annotations
 import datetime
 
 from quickboosters import db
+from quickboosters.config import Config
 from quickboosters.api.users.interface import UserInterface
 
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -11,6 +12,8 @@ from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import DateTime
 from sqlalchemy.ext.hybrid import hybrid_property
+from time import time
+import jwt
 
 
 class User(UserMixin, db.Model):
@@ -69,3 +72,17 @@ class User(UserMixin, db.Model):
         for key, val in interface.items():
             setattr(self, key, val)
         return self
+
+    def get_reset_password_token(self, expires_in=600):
+        return jwt.encode(
+            {'reset_password': self.id, 'exp': time() + expires_in},
+            Config().SECRET_KEY, algorithm='HS256').decode('utf-8')
+
+    @staticmethod
+    def verify_reset_password_token(token):
+        try:
+            id = jwt.decode(token, Config().SECRET_KEY,
+                            algorithms=['HS256'])['reset_password']
+        except:
+            return
+        return User.query.get(id)

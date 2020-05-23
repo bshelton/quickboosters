@@ -4,9 +4,11 @@ from flask import jsonify, request
 from sqlalchemy.exc import IntegrityError
 
 from quickboosters.api.users.auth import auth
+from quickboosters.api.users.helper import send_password_reset_email
 from quickboosters.api.users.auth import login_required
 from quickboosters.api.users.auth import encodeAuthToken
 from quickboosters.api.users.auth import decodeAuthToken
+from quickboosters.api.users.model import User
 from quickboosters.api.users.schema import UserSchema
 from quickboosters.api.users.service import UserService
 
@@ -68,14 +70,20 @@ def register_user():
             'error': e
         })
 
-@auth.route('/auth/checktoken', methods=["POST"])
-def check():
+
+@auth.route('/password-reset', methods=['POST'])
+def reset_password_request():
     data = request.get_json()
-    print(decodeAuthToken(data['auth_token']))
-    return "token test"
+    email = data['email']
+    user = UserService().get_by_email(email)
+    if user:
+        print("asdas")
+        send_password_reset_email(user)
+    return "sent email"
 
+@auth.route('/reset_password/<token>', methods=['POST'])
+def reset_password(token):
+    user = User.verify_reset_password_token(token)
 
-@auth.route('/auth/needtoken', methods=["POST"])
-@login_required
-def need_token():
-    return "You made it!"
+    if user:
+        UserService().update(user.id)

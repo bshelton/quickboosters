@@ -1,5 +1,5 @@
 import os
-
+from flask_mail import Mail
 from quickboosters.config import DevConfig
 from quickboosters.api.roles.dev.sample_data import create_role
 from quickboosters import (
@@ -17,6 +17,7 @@ if conf == 'development':
     print(app.url_map)
 else:
     app = create_app('prod')
+
 
 if __name__ == "__main__":
     app.run()

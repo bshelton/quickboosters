@@ -2,11 +2,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_cors import CORS
+from flask_mail import Mail
 
 from quickboosters.config import DevConfig
 
 db: SQLAlchemy = SQLAlchemy()
-
 
 def create_app(environment):
     print(environment)
@@ -15,7 +15,6 @@ def create_app(environment):
         devconfig = DevConfig()
         app.config.from_object(devconfig)
         db.init_app(app)
-
         with app.app_context():
             enable_extensions(app)
             enable_login_mgr(app)

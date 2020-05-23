@@ -39,6 +39,9 @@ class ProductionConfig(Config):
 class DevConfig(Config):
     DEBUG = True
     SQLALCHEMY_ECHO = True
+    SMTP_SERVER = "localhost"
+    SMTP_PORT = 8025
+    SENDER_EMAIL = "noreply@quickboosters.com"
     DB_USER = os.getenv('DB_USER_DEV')
     DB_PASS = os.getenv('DB_PASS_DEV')
     DB_HOST = os.getenv('DB_HOST_DEV')
