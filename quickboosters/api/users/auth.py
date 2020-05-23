@@ -39,6 +39,17 @@ def encodeAuthToken(user_id: User) -> jwt:
 
 
 def decodeAuthToken(token: jwt) -> jwt:
+    """Decodes an encoded JWT token.
+
+    Parameters
+    ----------
+    token: jwt
+        The jwt token to decode.
+
+    Returns:
+        The user that the token was encoded for.
+    """
+
     try:
         payload = jwt.decode(token, 'secret', algorithms='HS256')
         return payload['sub']
