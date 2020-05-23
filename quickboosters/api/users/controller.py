@@ -1,29 +1,14 @@
 from __future__ import annotations
 
-from flask import jsonify, request, Blueprint
+from flask import jsonify, request
 from sqlalchemy.exc import IntegrityError
-import datetime
-import jwt
 
-from quickboosters.api.users.model import User
-from quickboosters.api.users.interface import UserInterface
+from quickboosters.api.users.auth import auth
+from quickboosters.api.users.auth import login_required
+from quickboosters.api.users.auth import encodeAuthToken
+from quickboosters.api.users.auth import decodeAuthToken
 from quickboosters.api.users.schema import UserSchema
 from quickboosters.api.users.service import UserService
-from quickboosters.config import Config
-
-auth = Blueprint('auth', __name__)
-
-
-def _encodeAuthToken(user_id: User) -> jwt:
-    now: datetime = datetime.datetime.now()
-
-    payload = { 
-        'exp': now + datetime.timedelta(days=0, seconds=5),
-        'iat': datetime.datetime.utcnow(),
-        'sub': user_id
-    }
-    token = jwt.encode(payload, 'secret', algorithm='HS256')
-    return token
 
 
 @auth.route('/auth/login', methods=['POST'])
@@ -44,7 +29,7 @@ def login_and_generate_token() -> str:
 
     try:
         if user and user.check_password(password):
-            token = _encodeAuthToken(user.id)
+            token = encodeAuthToken(user.id)
         return jsonify({
             'status': 'Success',
             'auth_token': token.decode('UTF-8')
@@ -82,3 +67,15 @@ def register_user():
             'status': 'failure',
             'error': e
         })
+
+@auth.route('/auth/checktoken', methods=["POST"])
+def check():
+    data = request.get_json()
+    print(decodeAuthToken(data['auth_token']))
+    return "token test"
+
+
+@auth.route('/auth/needtoken', methods=["POST"])
+@login_required
+def need_token():
+    return "You made it!"
