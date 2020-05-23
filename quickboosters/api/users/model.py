@@ -79,10 +79,10 @@ class User(UserMixin, db.Model):
             Config().SECRET_KEY, algorithm='HS256').decode('utf-8')
 
     @staticmethod
-    def verify_reset_password_token(token):
+    def verify_reset_password_token(token) -> User:
         try:
             id = jwt.decode(token, Config().SECRET_KEY,
                             algorithms=['HS256'])['reset_password']
-        except:
-            return
-        return User.query.get(id)
+            return User.query.get(id)
+        except Exception as e:
+            return str(e)

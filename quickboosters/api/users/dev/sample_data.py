@@ -1,8 +1,8 @@
-from quickboosters.api.users.models import User
+from quickboosters.api.users.model import User
 from quickboosters import db
 
 from passlib.hash import sha256_crypt
-import datetime
+
 
 def create_user():
     hashed_pw = sha256_crypt.hash("password")
@@ -13,11 +13,3 @@ def create_user():
         db.session.commit()
     except Exception as e:
         print(str(e))
-
-
-
-
-
-
-
-

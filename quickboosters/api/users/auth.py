@@ -29,7 +29,7 @@ def get_encoded_token() -> jwt:
 def encodeAuthToken(user_id: User) -> jwt:
     now: datetime = datetime.datetime.now()
 
-    payload = { 
+    payload = {
         'exp': now + datetime.timedelta(days=0, minutes=300),
         'iat': datetime.datetime.utcnow(),
         'sub': user_id
@@ -77,6 +77,8 @@ def login_required(func):
 
         if token['status'] == 'failure':
             msg = "Unauthorized Access, please login."
-            return make_response(Response(msg, status=401, headers={'status': 'failure'}))
-   
+            return make_response(Response(msg,
+                                          status=401,
+                                          headers={'status': 'failure'}))
+
     return decorated
