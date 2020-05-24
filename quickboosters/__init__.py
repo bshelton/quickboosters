@@ -2,17 +2,19 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_cors import CORS
-from flask_mail import Mail
 
-from quickboosters.config import DevConfig
+
+from quickboosters.environments import Environment
+from quickboosters.config import DevConfig, TestConfig
 
 db: SQLAlchemy = SQLAlchemy()
 
 
-def create_app(environment):
-    print(environment)
+def create_app(env: Environment) -> Flask:
+    print(env.name)
     app = Flask(__name__)
-    if environment == "development":
+    db.init_app(app)
+    if env.name == "DEVELOPMENT":
         devconfig = DevConfig()
         app.config.from_object(devconfig)
         db.init_app(app)
@@ -20,7 +22,11 @@ def create_app(environment):
             enable_extensions(app)
             enable_login_mgr(app)
             register_blueprints(app)
+    elif env.name == "TESTING":
+        testconfig = TestConfig()
+        app.config.from_object(testconfig)
         return app
+    return app
 
 
 def enable_extensions(app: Flask):

@@ -12,7 +12,7 @@ class Config(object):
     DB_PASS = ''
     DB_HOST = ''
     DB_NAME = ''
-    SQLALCHEMY_TRACK_MODIFICATIONS = True
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     @property
     def SQLALCHEMY_DATABASE_URI(self):
@@ -26,19 +26,55 @@ class Config(object):
     @SQLALCHEMY_DATABASE_URI.setter
     def SQLALCHEMY_DATABASE_URI(self, user, password, host, db_name):
         return 'mysql://{0}:{1}@{2}/{3}'.format(
-                user,
-                password,
-                host,
-                db_name)
+            user,
+            password,
+            host,
+            db_name)
 
 
 class ProductionConfig(Config):
     DEBUG = False
 
 
+class TestConfig(Config):
+    DEBUG = False
+    SQLALCHEMY_ECHO = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # SMTP_SERVER = "localhost"
+    # SMTP_PORT = 8025
+    # SENDER_EMAIL = "noreply@quickboosters.com"
+    DB_USER = os.getenv('DB_USER_TEST')
+    DB_PASS = os.getenv('DB_PASS_TEST')
+    DB_HOST = os.getenv('DB_HOST_TEST')
+    DB_NAME = os.getenv('DB_NAME_TEST')
+
+    @property
+    def SQLALCHEMY_DATABASE_URI(self):
+        return 'mysql://{0}:{1}@{2}/{3}'.format(
+            self.DB_USER,
+            self.DB_PASS,
+            self.DB_HOST,
+            self.DB_NAME
+        )
+
+    def verbose(self):
+        msg = """Using the following database variables:
+        DB HOST: {}
+        DB NAME: {}
+        DB_USER: {}
+        DB_PASS: {}
+        """.format(
+            self.DB_HOST,
+            self.DB_NAME,
+            self.DB_USER,
+            self.DB_PASS
+        )
+        return msg
+
+
 class DevConfig(Config):
     DEBUG = True
-    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_ECHO = False
     SMTP_SERVER = "localhost"
     SMTP_PORT = 8025
     SENDER_EMAIL = "noreply@quickboosters.com"

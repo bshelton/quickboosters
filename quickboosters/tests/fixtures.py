@@ -8,13 +8,15 @@ from flask.testing import FlaskClient
 from flask_sqlalchemy import SQLAlchemy
 
 from quickboosters import create_app
+from quickboosters.environments import Environment
 
 import pytest
 
 
 @pytest.fixture()
 def app() -> Flask:
-    return create_app("development")
+    app = create_app(Environment.TESTING)
+    return app
 
 
 @pytest.fixture
@@ -25,10 +27,13 @@ def client(app: Flask) -> FlaskClient:
 @pytest.fixture
 def db(app: Flask) -> Generator[SQLAlchemy, None, None]:
     from quickboosters import db
-
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     with app.app_context():
+  
         db.drop_all()
         db.create_all()
         yield db
+        db.session.close()
         db.drop_all()
         db.session.commit()
+        db.session.close()
