@@ -5,12 +5,14 @@ from quickboosters import db
 from quickboosters.config import Config
 from quickboosters.api.users.interface import UserInterface
 
+
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import DateTime
+from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property
 from time import time
 import jwt
@@ -27,6 +29,7 @@ class User(UserMixin, db.Model):
     _password = Column("password", String(255), nullable=False)
     created_on = Column(DateTime(), default=datetime.datetime.utcnow, nullable=False)
     role = Column(String(30))
+    orders = db.relationship('Order', backref='users')
 
     def __init__(self, username, email, password, role, created_on):
         self.username = username
