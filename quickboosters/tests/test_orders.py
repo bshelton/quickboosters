@@ -30,3 +30,28 @@ def test_create_order(db: SQLAlchemy) -> None:
     test_order = create_order()
     order: Order = OrderService().create(test_order)
     assert order.user_id == test_order['user_id']
+
+
+def test_get_all_orders(db: SQLAlchemy) -> None:
+    test_order = create_order()
+    OrderService().create(test_order)
+    all_orders = OrderService().get_all()
+
+    assert len(all_orders) > 0
+
+
+def test_delete_order(db: SQLAlchemy) -> None:
+    test_order = create_order()
+    order: Order = OrderService().create(test_order)
+    deleted_order: Order = OrderService.delete_by_id(order.order_id)
+    assert deleted_order.order_id == order.order_id
+
+
+def test_update_order(db: SQLAlchemy) -> None:
+    test_order: OrderInterface = create_order()
+    order: Order = OrderService().create(test_order)
+
+    test_order['order_amount'] = 20.20
+    updated_order: Order = OrderService().update(order, test_order)
+
+    assert updated_order.order_amount == 20.20

@@ -74,11 +74,11 @@ class OrderService:
 
         Parameters
         ----------
-        user_id: int
-            The user to delete
+        order_id: int
+            The order to delete
 
         Returns:
-            User: The user that was deleted
+            Order: The order that was deleted
         """
 
         order: Order = Order.query.filter(Order.order_id == order_id).first()
