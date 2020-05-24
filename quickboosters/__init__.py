@@ -8,6 +8,7 @@ from quickboosters.config import DevConfig
 
 db: SQLAlchemy = SQLAlchemy()
 
+
 def create_app(environment):
     print(environment)
     app = Flask(__name__)
