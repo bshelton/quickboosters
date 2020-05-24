@@ -8,5 +8,10 @@ def create_role():
     """Creates roles in the database"""
 
     admin_role = Role(name="Admin")
-    db.session.add(admin_role)
-    db.session.commit()
+    try:
+        db.session.add(admin_role)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+
+        print(e)

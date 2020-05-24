@@ -28,4 +28,4 @@ def test_create_order(app) -> None:
         test_order = create_order()
         order: Order = OrderService().create(test_order)
 
-        assert order.user_id == test_order.order_id
+        assert order.user_id == test_order['user_id']

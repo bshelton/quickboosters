@@ -100,7 +100,7 @@ class UserService:
             User: The user that was deleted
         """
 
-        user: User = User.query.filter(User.id == user_id).first()
+        user: User = User.query.filter(User.user_id == user_id).first()
         if not user:
             return ""
         db.session.delete(user)

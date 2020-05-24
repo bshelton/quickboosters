@@ -17,7 +17,7 @@ class Order(db.Model):
     __tablename__ = 'orders'
     order_id = Column(Integer(), primary_key=True)
     order_type = Column(Enum(TypeEnum), nullable=False)
-    user_id = Column(Integer(), ForeignKey('users.id'), nullable=False)
+    user_id = Column(Integer(), ForeignKey('users.user_id'), nullable=False)
     order_amount = Column(Float(), nullable=False)
     date_ordered = Column(DateTime(), nullable=False)
     status = Column(Enum(StatusEnum), nullable=False)

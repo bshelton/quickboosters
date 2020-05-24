@@ -4,6 +4,7 @@ import datetime
 from quickboosters import db
 from quickboosters.config import Config
 from quickboosters.api.users.interface import UserInterface
+from quickboosters.api.roles.model import UserToRole
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -11,6 +12,7 @@ from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy import String
 from sqlalchemy import DateTime
+from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property
 from time import time
 import jwt
@@ -21,12 +23,13 @@ class User(UserMixin, db.Model):
 
     __tablename__ = 'users'
 
-    id = Column(Integer(), primary_key=True)
+    user_id = Column(Integer(), primary_key=True)
     username = Column(String(20), unique=True, nullable=False)
     email = Column(String(50), unique=True, nullable=False)
     _password = Column("password", String(255), nullable=False)
-    role = Column(String(80))
     created_on = Column(DateTime(), default=datetime.datetime.utcnow, nullable=False)
+    role = Column(String(30))
+    orders = db.relationship('Order', backref='users')
 
     def __init__(self, username, email, password, role, created_on):
         self.username = username
@@ -75,14 +78,14 @@ class User(UserMixin, db.Model):
 
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
-            {'reset_password': self.id, 'exp': time() + expires_in},
+            {'reset_password': self.user_id, 'exp': time() + expires_in},
             Config().SECRET_KEY, algorithm='HS256').decode('utf-8')
 
     @staticmethod
     def verify_reset_password_token(token) -> User:
         try:
-            id = jwt.decode(token, Config().SECRET_KEY,
-                            algorithms=['HS256'])['reset_password']
-            return User.query.get(id)
+            user_id = jwt.decode(token, Config().SECRET_KEY,
+                                 algorithms=['HS256'])['reset_password']
+            return User.query.get(user_id)
         except Exception as e:
             return str(e)

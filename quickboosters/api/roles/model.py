@@ -11,14 +11,21 @@ from sqlalchemy.orm import relationship
 
 class Role(db.Model):
     __tablename__ = 'roles'
-    id = Column(Integer(), primary_key=True)
+    role_id = Column(Integer(), primary_key=True)
     name = Column(String(50), unique=True)
 
     def __init__(self, name):
         self.name = name
 
 
+class UserToRole(db.Model):
+    __tablename__ = 'user_to_role'
+    user_to_role_id = Column(Integer(), primary_key=True)
+    role_id = Column(Integer(), ForeignKey('roles.role_id'))
+    user_id = Column(Integer(), ForeignKey('users.user_id'))
+
+
 class RoleTypes(Enum):
-    MEMBER = 1
-    BOOSTER = 2
-    ADMIN = 3
+    MEMBER = 'Member'
+    BOOSTER = 'Booster'
+    ADMIN = 'Admin'
