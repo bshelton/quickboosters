@@ -13,7 +13,6 @@ class Role(db.Model):
     __tablename__ = 'roles'
     id = Column(Integer(), primary_key=True)
     name = Column(String(50), unique=True)
-    usertorole = relationship("user_to_role")
 
     def __init__(self, name):
         self.name = name

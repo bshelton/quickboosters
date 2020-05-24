@@ -5,6 +5,7 @@ from quickboosters.api.orders.model import Order
 
 from quickboosters import db
 
+
 class OrderService:
     """Service for dealing with an Order."""
 
@@ -35,7 +36,7 @@ class OrderService:
         ----------
         attributes: OrderInterface
             The attributes of an order
-        Returns: 
+        Returns:
             Order: The newly created order.
         """
         new_order: Order = Order(
@@ -48,3 +49,39 @@ class OrderService:
         db.session.add(new_order)
         db.session.commit()
         return new_order
+
+    @staticmethod
+    def update(order: Order, changes: OrderInterface) -> Order:
+        """Update to an existing user with a OrderInterface
+
+        Parameters
+        ----------
+        order: Order
+            The order to update.
+        changes: OrderInterface
+            The updates to the order.
+
+        Returns:
+            Order: The order with the updated changes.
+        """
+        order.update(changes)
+        db.session.commit()
+        return order
+
+    @staticmethod
+    def delete_by_id(order_id: int) -> Order:
+        """Deletes a single order by id
+
+        Parameters
+        ----------
+        user_id: int
+            The user to delete
+
+        Returns:
+            User: The user that was deleted
+        """
+
+        order: Order = Order.query.filter(Order.order_id == order_id).first()
+        db.session.delete(order)
+        db.session.commit()
+        return order
