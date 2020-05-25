@@ -30,6 +30,7 @@ class User(UserMixin, db.Model):
     created_on = Column(DateTime(), default=datetime.datetime.utcnow, nullable=False)
     role = Column(String(30))
     orders = db.relationship('Order', backref='users')
+    logs = db.relationship('ChatLog', backref='users')
 
     def __init__(self, username, email, password, role, created_on):
         self.username = username
