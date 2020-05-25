@@ -1,0 +1,37 @@
+
+
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui.scss";
+
+// Temp fix for reactstrap
+@import '~@coreui/coreui/scss/_dropdown-menu-right.scss';
+
+// ie fixes
+@import "ie-fix";
+
+@import "main.scss";
+
+
+.app-header,.card-header,.app-footer,.card-footer,.page-link{
+  background: var(--bg10);
+  color:var(--text-color);
+  border: none;
+}
+.sidebar,.breadcrumb,.card,.list-group-item,
+.tab-content,.nav-tabs .nav-link.active,.brand-card,
+.aside-menu .nav-tabs,
+.bg-light{
+  border: none;
+  background: var(--bg11)!important;
+  color:var(--text_color)!important;
+}
+.aside-menu , .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus{
+  border-color: var(--bg10)
+}
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus,
+.navbar-nav .open > .nav-link:hover, .navbar-nav .open > .nav-link:hover:hover, .navbar-nav .open > .nav-link:focus:hover, .navbar-nav .active > .nav-link:hover, .navbar-nav .active > .nav-link:hover:hover, .navbar-nav .active > .nav-link:focus:hover, .navbar-nav .nav-link.open:hover, .navbar-nav .nav-link.open:hover:hover, .navbar-nav .nav-link.open:focus:hover, .navbar-nav .nav-link.active:hover, .navbar-nav .nav-link.active:hover:hover, .navbar-nav .nav-link.active:focus:hover{
+  color: var(--c2)!important;
+}

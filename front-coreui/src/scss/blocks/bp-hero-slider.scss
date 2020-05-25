@@ -1,0 +1,28 @@
+.swiper-container{
+	padding: 0;
+    .swiper-slide{
+        @extend %bg_cover;
+        height: 200px;
+        display: block;
+        @include bp-medium{
+            height: 480px;
+        }
+    }
+    .desc{
+        max-width: 75%;
+        margin: 0 auto;
+        padding: var(--pad);
+        box-sizing: border-box;
+        text-align: center;
+        @include bp-medium{
+            max-width: 100%;
+            padding: var(--pad1) var(--pad2);
+        }
+    }
+}
+@import url('https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/css/swiper.min.css');
+
+/* Slider buttons */
+:root{
+	--swiper-theme-color: var(--c1)!important;
+}

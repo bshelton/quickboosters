@@ -1,0 +1,63 @@
+.bp-block.bp-text-image{
+	.wrapper{
+		overflow: hidden;
+		padding: 0;
+	}
+	//padding: 0;
+	&.add-padding{
+		@extend %block-pad;
+	}
+	.itb-text{
+		padding: var(--pad) var(--pad1) var(--pad1);
+		@include bp-medium{
+			padding: var(--pad3) var(--pad2);
+		}
+	}
+	.itb-image{
+		min-height: 200px;
+		//margin-top: var(--pad2);
+		position: relative;
+		
+		@extend %bg_cover;
+		@include bp-medium{
+			min-height: 0;
+			margin: 0;
+		}
+		&:hover > div {
+			height: 100%;
+			top: 0;
+			left: 0;
+		}
+		.overlay-move{
+
+			content: "";
+			border: 2px solid var(--bg10);
+			width: 100%;
+			position: absolute;
+			height: 90%;
+			top: 14px;
+			z-index: 1;
+			left: 14px;
+			transition: $transition;
+
+		}
+	}
+
+	.image-on-left{
+		.itb-text{
+			order:-1;
+			@include bp-medium{
+				padding: var(--pad3) var(--pad2);
+			}
+		}
+		.overlay-move{
+			left: -14px
+		}
+	}
+	img{
+		display: block;
+	}
+	.btn{
+		margin-top: 32px;
+	}
+}

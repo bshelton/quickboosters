@@ -1,0 +1,111 @@
+.app{
+
+.style{
+    @extend .wrapper;
+    margin: 0 auto;
+    margin-top: 32px;
+}
+.swish-holder{
+    position: fixed;
+    right: 0;
+}
+.wrappers-style{
+    
+    flex-wrap: wrap;
+    .wrapper,
+    .wrapper-m {
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: var(--pad2);
+    }
+}
+.palette {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 80px 80px;
+    margin-bottom: 1em;
+}
+.palette__main {
+    grid-column: span 2;
+}
+.colors , .typography, .buttons{
+    border :1px solid var(--bg10);;
+    padding: 30px;
+}
+.palette{
+    &.main{
+        div:nth-child(1){
+            background-color: var(--c1);
+        }
+        div:nth-child(2){
+            background-color: var(--c10);
+        }
+        div:nth-child(3){
+            background-color: var(--c11);
+        }
+    }
+    &.secondary{
+        div:nth-child(1){
+            background-color: var(--c2);
+        }
+        div:nth-child(2){
+            background-color: var(--c20);
+        }
+        div:nth-child(3){
+            background-color: var(--c21);
+        } 
+    }
+    &.bg{
+        div:nth-child(1){
+            background-color: var(--bg1);
+        }
+        div:nth-child(2){
+            background-color: var(--bg10);
+        }
+        div:nth-child(3){
+            background-color: var(--bg11);
+        } 
+    }
+    &.neutrals{
+        div:nth-child(1){
+            background-color: var(--n1);
+        }
+        div:nth-child(2){
+            background-color: var(--n2);
+        }
+        div:nth-child(3){
+            background-color: var(--n3);
+        }
+        div:nth-child(4){
+            background-color: var(--n4);
+        } 
+    }
+}
+.buttons{
+    button{
+        //display: block;
+    }
+}
+
+section{
+    position: relative;
+}
+section > h3 {
+    color: var(--c1);
+    background: var(--bg1);
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    padding: 0 10px;
+    text-transform: uppercase;
+}
+
+section > section{
+    position: relative;
+    border-top: 1px solid var(--bg10);;
+    margin-top: 32px;
+    padding-top: 32px;
+}
+}

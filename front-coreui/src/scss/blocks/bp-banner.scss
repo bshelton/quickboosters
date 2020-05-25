@@ -1,0 +1,36 @@
+.bp-banner {
+	@extend %block-pad;
+	a {
+		width: 100%;
+		display: block;
+		box-sizing: border-box;
+		padding: 8px 0px;
+		text-align: center;
+		min-height: 250px;
+		position: relative;
+		background-size: cover;
+		transition: $transition;
+		@extend %bg_cover;
+		@include bp-medium {
+			padding: 8px 24px;
+			&:hover {
+				background-size: 120%;
+			}
+		}
+		@include bp-large {
+			background-size: 100%;
+		}
+		box-shadow: var(--box-shadow);
+
+	}
+	.wrapper--banner {
+		top: 50%;
+		z-index: 1;
+		transform: translateY(-50%);
+		margin: 0 auto;
+		position: absolute;
+		left: 16px;
+		box-sizing: border-box;
+		right: 16px;
+	}
+}

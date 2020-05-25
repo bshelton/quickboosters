@@ -1,0 +1,37 @@
+.bp-filter-post{
+
+	.filters > div{
+		max-height: 0;
+		overflow: hidden;
+		transition:$transition;
+	}
+	.filters > .open {
+		max-height: 200px;
+		padding-top:var(--pad2);
+	
+	}
+	.layout--filter{
+		margin-bottom:  var(--pad1);
+		button {
+			margin-right:  var(--pad);
+
+		}
+		.terms-tag{
+			display: inline-block;
+			margin-right:  var(--pad);
+			cursor: pointer;
+		}
+	}
+	.filter-post{
+		margin-bottom: var(--pad);
+		h4 {
+			padding: var(--pad4) 0;
+			margin: 0;
+		}
+		a{
+			display: block;
+			text-align: center;
+		}
+	}
+	
+}

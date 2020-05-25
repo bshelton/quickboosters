@@ -1,0 +1,123 @@
+/* Mixin
+ ========================================================================== */
+
+%clearfix {
+	*zoom: 1;
+
+	&:before,
+	&:after {
+		content: " ";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+%v_c {
+	top: 50%;
+	transform: translateY(-50%);
+	margin: 0 auto;
+	position: relative;
+}
+
+%max_w {
+	width: $max-width;
+	max-width: 100%;
+	margin: 0 auto;
+	box-sizing: border-box;
+
+	@media only screen and (max-width: $max-width) {
+		padding: 0 var(--pad);
+	}
+
+	@media only screen and (max-width: $break-mid) {
+		padding: 0 var(--pad);
+	}
+}
+
+%max_w_m {
+	width: $max-width_m;
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+%visuallyhidden {
+	margin: -1px;
+	padding: 0;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip: rect(0, 0, 0, 0);
+	position: absolute;
+}
+
+/* Media querys */
+@mixin bp-large {
+	@media only screen and (min-width: 60em) {
+		@content;
+	}
+}
+
+@mixin bp-medium {
+	@media only screen and (min-width: 40em) {
+		@content;
+	}
+}
+
+@mixin bp-small {
+	@media only screen and (min-width: 30em) {
+		@content;
+	}
+}
+
+@mixin bp-max {
+	@media only screen and (min-width: $max-width) {
+		@content;
+	}
+}
+
+@mixin tab-size {
+	@media only screen and (max-width: 992px) {
+		@content;
+	}
+}
+
+/* Block padding */
+%block-pad {
+	padding: var(--block_pad) 0;
+
+	@include bp-large {
+		padding: var(--block_pad) 0;
+	}
+}
+
+/* background cover */
+%bg_cover {
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+/* Delay för child elements */
+%anim-delay {
+	animation-name: fade-in;
+	animation-fill-mode: both;
+	animation-duration: 0.5s;
+	@for $i from 1 through 15 {
+		& > * :nth-of-type(#{$i}) {
+			animation-delay: #{0.3+ ($i)/30}s;
+		}
+	}
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

@@ -1,0 +1,18 @@
+/* Helper Classes
+ ========================================================================== */
+.visually-hidden {
+	@extend %visuallyhidden;
+}
+.cf {
+	@extend %clearfix;
+}
+.wrapper {
+	@extend %max_w;
+}
+.wrapper-m {
+	@extend %max_w_m;
+}
+.v-center {
+	@extend %v_c;
+}
+

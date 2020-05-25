@@ -1,0 +1,16 @@
+
+.center {
+	text-align: center;
+}
+.overlay {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: var(--overlay);
+	z-index: 0;
+}
+.app{
+	//margin-top:64px;
+}

@@ -1,0 +1,23 @@
+.article-block{
+	@extend %block-pad;
+	h3{
+		margin: 0 0 12px;
+	}
+	li{
+		background: #fff;
+		border-radius: 6px 6px 0 0;
+		min-width: 25%;
+		max-width: 50%;
+	}
+	.readmore{
+		margin-top: 24px;
+		display: inline-block;
+	}
+	img{
+		display: block;
+	}
+	.grid--auto-c{
+		flex-wrap: wrap;
+	}
+	
+}

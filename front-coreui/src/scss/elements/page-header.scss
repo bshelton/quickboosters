@@ -1,0 +1,55 @@
+.pageheader {
+	h1 {
+		padding: 16vh 0;
+	}
+	.media {
+		@extend %bg_cover;
+	}
+}
+
+
+
+.chat-wrapper {
+	background-color: var(--bg10);
+	position: fixed;
+    box-shadow: 0 20px 20px rgba(0, 0, 0, .08);
+    border-radius: 4px;
+	max-width: 450px;
+	min-width: 200px;
+    right: 16px;
+    border: 1px solid var(--bg11);
+	padding: 16px;
+	bottom: 0;
+	z-index: 9;
+	.chat-header{
+		display: flex;
+		justify-content: space-between;
+		
+		padding-bottom: 4px;
+		img{
+			width: 32px;
+			border-radius: 50%;
+		}
+		h5{
+			align-self: center;
+		}
+		
+	}
+	&.minimize{
+		form,.chat-panel{
+			display: none;
+		}
+	}
+	.chat-panel {
+		border-top: 1px solid var(--n4);
+		margin-top: 4px;
+	}
+
+	input{
+		width: 100%;
+	}
+}
+#chat-panel {
+	//padding: 0px 10px;
+
+}

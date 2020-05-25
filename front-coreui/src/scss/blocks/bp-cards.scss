@@ -1,0 +1,57 @@
+.bp-cards{
+	
+	@extend %block-pad;
+	h3{
+		margin: 0 0 var(--pad);
+	}
+	li{
+
+		
+		position: relative;
+
+		&:after {
+			content: "";
+			border: 2px solid var(--bg10);
+			width: 100%;
+			position: absolute;
+			height: 100%;
+			top: 16px;
+			z-index: 1;
+			left: -16px;
+			transition: $transition;
+			clip-path: polygon(100% 0, 100% calc(100% - var(--pad1)), calc(100% - (var(--pad1) * 1.73)) 100%, 0 100%, 0 0);
+		}
+		&:hover{
+			&:after{
+				top: 0;
+				left: 0;
+				width: 100%;
+			}
+			
+		}
+    }
+    .content{
+		position: relative;
+		z-index: 2;
+        background: var(--bg11);
+		padding : var(--pad1);
+		border-radius : 0 0 var(--border-radius) var(--border-radius) ;
+		background: linear-gradient(to top right,var(--bg11), var(--bg10));
+		clip-path: polygon(100% 0, 100% calc(100% - var(--pad1)), calc(100% - (var(--pad1) * 1.73)) 100%, 0 100%, 0 0);
+		
+    }
+	.read-more{
+		margin-top: var(--pad1);
+		display: inline-block;
+	}
+	img{
+		position: relative;
+		z-index: 2;
+        display: block;
+		width: 100%;
+		border-radius : var(--border-radius) var(--border-radius) 0 0 ;
+    }
+    .grid--auto-c{
+        margin: 0;
+    }
+}

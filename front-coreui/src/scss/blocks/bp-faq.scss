@@ -1,0 +1,14 @@
+.bp-faq {
+	svg, .svg {
+		transition: $transition;
+	}
+	li > div {
+		padding-left: 16px;
+		overflow: hidden;
+	}
+	[aria-expanded="true"] {
+		svg, .svg {
+			transform: rotate(90deg);
+		}
+	}
+}

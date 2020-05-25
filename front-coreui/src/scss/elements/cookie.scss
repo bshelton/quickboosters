@@ -1,0 +1,32 @@
+.cookie {
+    display: none;
+    position: fixed;
+    width: 100%;
+    padding: 24px;
+    box-sizing: border-box;
+    background: var(--c1);
+    color:#fff;
+    bottom: 0;
+    z-index: 99;
+    left: 0;
+    right: 0;
+    a{
+    	text-decoration: underline;
+
+    }
+    .btn{
+         background: #ca9e67;
+    }
+    .wrap{
+    	@extend %max_w;
+    }
+    button{
+		float: right;
+    }
+    span{
+    	line-height: 36px;
+		display: inline-block;
+		max-width: 80%;
+    }
+
+}

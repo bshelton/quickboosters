@@ -1,0 +1,129 @@
+/* Typography
+ ========================================================================== */
+
+
+ @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+
+@font-face {
+    font-family:"Flama-Bold";
+	src:url("../../fonts/Flama Bold.woff2") format("woff2"),
+	url("../../fonts/Flama Bold.woff") format("woff"),
+	url("../../fonts/Flama Bold.otf") format("opentype");
+    font-style:normal;font-weight:400;
+}
+
+$font-family-text: "Raleway";
+$font-family-header: "Flama-Bold" ;
+
+html {
+	font-size: 16px;
+}
+body {
+	line-height: 1.5;
+	font-family: $font-family-text;
+	background: var(--bg1);
+	color: var(--text_color);
+}
+a {
+	color:var(--text_color);
+	text-decoration: none;
+	font-weight: bold;
+	display: inline-block;
+	&:hover {
+		color:var(--c1);
+		text-decoration: none;
+	}
+	&.link{
+		color:var(--c1);
+		&:hover {
+			color: var(--c10);
+		}
+	}
+}
+h1 , .h1{
+	font-size: 2.5rem;
+	letter-spacing: -0.8px;
+	line-height: 1.25;
+	margin-bottom: 24px;
+	font-weight: bold;
+	font-family: $font-family-header;
+	@include bp-medium {
+		font-size: 3rem;
+	}
+}
+
+h2 {
+	font-size: 1.75rem;
+	line-height: 1.25;
+	letter-spacing: -0.6px;
+	margin-bottom: 16px;
+	font-weight: bold;
+	font-family: $font-family-header;
+	@include bp-medium {
+		font-size: 2rem;
+	}
+}
+
+h3 {
+	font-size: 1.5rem;
+	line-height: 1.21;
+	letter-spacing: -0.5px;
+	margin-bottom: 8px;
+	font-weight: bold;
+	font-family: $font-family-header;
+}
+
+h4 {
+	font-size: 1.125rem;
+	line-height: 1.25;
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+h5 {
+	font-size: 1rem;
+	line-height: 1.21;
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+h6 {
+	font-size: 0.875rem;
+	line-height: 1.21;
+	margin-bottom: 8px;
+	font-weight: bold;
+}
+
+p {
+	font-size: 1rem;
+	line-height: 1.5;
+	margin-bottom: 8px;
+
+}
+.display {
+	font-size: 3rem;
+	line-height: 1;
+	@include bp-medium {
+		font-size: 4rem;
+	}
+}
+.list_style {
+	ul {
+		padding-left: var(--pad1);
+		list-style: disc;
+		margin-bottom: 16px;
+	}
+	li {
+		line-height: 1.5;
+	}
+}
+.navbar-nav .open > .nav-link, .navbar-nav .open > .nav-link:hover, .navbar-nav .open > .nav-link:focus, .navbar-nav .active > .nav-link, .navbar-nav .active > .nav-link:hover, .navbar-nav .active > .nav-link:focus, .navbar-nav .nav-link.open, .navbar-nav .nav-link.open:hover, .navbar-nav .nav-link.open:focus, .navbar-nav .nav-link.active, .navbar-nav .nav-link.active:hover, .navbar-nav .nav-link.active:focus {
+	font-size: 0.875rem;
+	line-height: 1.29;
+	font-weight: bold;
+	color: #fff;
+	&:hover {
+		color: lighten(#000, 30%);
+	}
+}

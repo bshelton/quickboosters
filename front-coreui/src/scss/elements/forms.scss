@@ -1,0 +1,335 @@
+/* Forms
+ ========================================================================== */
+label {
+	font-weight: 500;
+	display: block;
+	margin-bottom: 5px;
+}
+
+label + input,
+label + textarea {
+	margin-top: 4px;
+}
+.input__wrapper {
+    margin-bottom: 30px;
+}
+input:disabled ~ * {
+    opacity: 0.3;
+    user-select: none;
+	pointer-events: none;
+	cursor: not-allowed;
+
+}
+input.input-form, select, textarea {
+    height: 50px;
+    font-size: 16px;
+    border: 2px solid var(--bg10);
+    width: 100%;
+    padding: 8px;
+    color: var(--text_color);
+	background: var(--bg11);
+	border-radius : var(--border-radius);
+}
+
+input.input-form:focus, input.input-form.active, select:focus, select.active, textarea:focus, textarea.active {
+    outline: none;
+    border-color: var(--n3);
+}
+input.input-form:disabled, select:disabled, textarea:disabled {
+    cursor: not-allowed;
+    background: var(--n3);
+    opacity: 0.6;
+}
+textarea {
+    resize: vertical;
+    min-height: 166px;
+}
+.alert {
+    margin-bottom: 16px;
+    display: block;
+    padding: 8px 16px;
+    font-weight: 600;
+    position: relative;
+	cursor: pointer;
+	border-radius : var(--border-radius);
+}
+.status-primary{
+	background-color: var(--c2);
+	color: var(--text_color);
+}
+.status-info{
+	background-color: var(--info);
+	color: var(--info_text);
+}
+.status-success{
+	background-color: var(--success);
+	color: var(--success_text);
+}
+.status-danger,.status-error{
+	background-color: var(--danger);
+	color: var(--danger_text)!important;
+}
+.status-warning ,.bg-warning , .card.bg-warning, {
+	background-color: var(--warning);
+	color: var(--warning_text)!important;
+}
+.badge {
+    display: inline-block;
+    //padding: 8px 16px;
+    border-radius: 50px;
+	//font-size: 14px;;
+    text-transform: uppercase;
+    //margin: 5px 10px 5px 0;
+    line-height: 1;
+}
+
+.radio {
+	margin: 8px 0;
+	overflow: hidden;
+	input {
+		display: none;
+	}
+	label {
+		position: relative;
+		padding-left: 32px;
+		cursor: pointer;
+	}
+	label::before {
+		content: "";
+		position: absolute;
+		width: 22px;
+		height: 22px;
+		border: 1px solid var(--n3);
+		border-radius: 50%;
+		left: 0;
+		top: 0;
+	}
+	label::after {
+		content: "";
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		top: 3px;
+		left: 3px;
+		background: var(--c2);
+		border-radius: 50%;
+		transform: scale(0);
+		transition: 0.3s ease;
+	}
+	input:checked + label::after {
+		transform: scale(1);
+	}
+}
+
+.checkbox {
+	display: inline-block;
+    position: relative;
+	user-select: none;
+	margin: 0 8px;
+	vertical-align: sub;
+	input {
+		display: none;
+	}
+	label {
+		position: relative;
+		vertical-align: middle;
+		cursor: pointer;
+		padding-left: 35px;
+	}
+	span.box {
+		display: inline-block;
+		width: 20px;
+
+		border: 1px solid var(--n3);
+		width: 24px;
+		height: 24px;
+		vertical-align: middle;
+		margin-right: 3px;
+		transition: 0.3s ease;
+		position: absolute;
+		left: 0;
+	}
+	span.box::before,  span.box::after {
+		content: "";
+		position: absolute;
+		width: 4px;
+		height: 16px;
+		border-radius: 40px;
+		background: var(--c2);
+		transition: all 0.3s ease;
+	}
+	 span.box::before {
+		transform: rotate(45deg) translateY(-5px) translateX(10px) scale(0);
+	}
+	span.box::after {
+		height: 8px;
+		transform: rotate(-45deg) translateY(10px) translateX(-4px) scale(0);
+	}
+	input:checked + label span.box::before {
+		transform: rotate(45deg) translateY(-5px) translateX(10px) scale(1);
+	}
+	input:checked + label span.box::after {
+		height: 8px;
+		transform: rotate(-45deg) translateY(10px) translateX(-4px) scale(1);
+	}
+}
+
+.checkbox-toggle{
+	display: inline-block;
+	margin: 0 16px 0 0;
+	h6{
+		margin-top: 0;
+	}
+	input {
+		display: none;
+	}
+	label {
+		outline: 0;
+		display: block;
+		width: 45px;
+		height: 16px;
+		background: var(--n3);
+		position: relative;
+		cursor: pointer;
+		border-radius: 2em;
+		padding: 3px;
+		transition: all 0.4s ease;
+		margin: 16px 0px;
+		&:after{
+
+				position: relative;
+				display: block;
+				content: "";
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				background: #fff;
+				transition: all 0.2s ease;
+				border: 1px solid var(--n3);
+
+				left: -4px;
+				top: -5px;
+
+		}
+	}
+	input:checked + label {
+		background: var(--c2);
+	}
+	input:checked + label::after {
+		left: 55%;
+	}
+}
+
+
+/* Buttons
+ ========================================================================== */
+ .button-cl {
+	background: none;
+	border: none;
+	color : var(--text_color);
+	cursor: pointer;
+}
+
+.btn {
+	padding: 16px 32px;
+	position: relative;
+	display: inline-block;
+	border: 0;
+	transition: var(--transition-fast);
+	font-weight: bold;
+	line-height: 1.25;
+	cursor: pointer;
+	background-color: var(--c1);
+	color: var(--text_color);
+	margin: 8px;
+	top: 0;
+	border-radius : var(--border-radius);
+	&:hover {
+		background: var(--c10);
+		color: var(--text_color);
+		top: -2px;
+	}
+	&.btn--sec{
+		background: var(--c2);
+		color: var(--text_color);
+		&:hover {
+			background: var(--c20);
+		}
+	}
+	&.btn--white {
+		background: #fff;
+		border: 1px solid var(--c1);
+		color:var(--c1);
+		&:hover {
+			background: darken(#fff, 10%);
+		}
+	}
+	&.btn--ghost {
+		background: none;
+		border: 2px solid var(--c1);
+		color: var(--text_color);
+		&:hover {
+			box-shadow: 0 0 0 1px var(--c1);
+		}
+	}
+	&.btn--warning {
+		background: var(--warning);
+		color: var(--warning_text);
+		&:hover {
+			background: var(--warning);
+		}
+	}
+	&.btn--success {
+		background: var(--success);
+		color:var(--success_text);
+		&:hover {
+			background: var(--success);
+		}
+	}
+	&.btn--danger {
+		background: var(--danger) ;
+		color: var(--danger_text);
+		&:hover {
+			background: var(--danger);
+		}
+	}
+	&.btn--info {
+		background: var(--info);
+		color: var(--info_text);
+		&:hover {
+			background: var(--info);
+		}
+	}
+	&.btn--cancel {
+		background: var(--n2);
+		color: var(--n4);
+		&:hover {
+			background: var(--n2);
+		}
+	}
+
+
+}
+
+//tables
+
+table {
+	border-collapse: collapse;
+	margin: var(--pad) 0;
+  }
+   th {
+	background:var(--bg11);
+  }
+
+  th, td {
+	border: 1px solid var(--n2);
+	padding:var(--pad0);
+  }
+
+  tr:nth-child(even) {
+	background:var(--bg11);
+  }
+
+  tr:hover {
+	background:var(--bg10);
+  }

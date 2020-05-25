@@ -1,0 +1,21 @@
+.bp-links {
+	text-align: center;
+	img {
+		padding-bottom: 32px;
+		&.is_icon {
+			width: 48px !important;
+		}
+	}
+	.link {
+		margin-bottom: 64px;
+		@include bp-medium {
+			margin-bottom: 0;
+		}
+	}
+	.content {
+		padding: 0 16px;
+		p {
+			margin-bottom: 16px;
+		}
+	}
+}

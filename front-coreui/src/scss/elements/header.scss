@@ -1,0 +1,47 @@
+.rs-navbar::before, .rs-navbar::after {
+  content: ' ';
+  display: table;
+}
+.rs-navbar::after {
+  clear: both;
+}
+.rs-navbar-nav {
+  float: left;
+}
+.rs-navbar-nav.rs-navbar-right {
+  float: right;
+}
+.rs-nav-item > .rs-nav-item-content > .rs-icon {
+  margin-right: 6px;
+}
+.rs-icon {
+  font-family: 'rsuite-icon-font' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-feature-settings: normal;
+  font-feature-settings: normal;
+  font-variant: normal;
+  display: inline-block;
+  text-transform: none;
+  font-size: 14px;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.rs-nav.rs-nav-horizontal .rs-dropdown, .rs-nav.rs-nav-horizontal .rs-nav-item {
+
+    display: inline-block;
+    vertical-align: top;
+
+}
+.rs-nav {
+  position: relative;
+}
+
+.rs-navbar.rs-navbar-default{
+  background-color: var(--bg1);
+}
+.rs-navbar.rs-navbar-default .rs-dropdown .rs-dropdown-toggle, .rs-navbar.rs-navbar-default .rs-nav-item > .rs-nav-item-content {
+  color: var(--text_color);
+}

@@ -1,0 +1,102 @@
+/* Variables
+ ==========================================================================
+1.Pick Primary colors
+ https://www.colorsandfonts.com/color-palettes.html
+
+2. Add schema
+ https://hihayk.github.io/scale/
+
+3.Generate UX color
+ https://colors.eva.design/
+
+ */
+
+ html{
+  //Primary colors
+  --c1:#D20053;
+  --c10:  #FC6474;
+  --c11:#B00057;
+  //Secondary colors
+
+  --c2 : #0e74f9;
+  --c20: #6DB8FD;
+  --c21: #0742B3;
+
+  //bg colors
+  --bg1 : #151A30;
+  --bg10 : #222B45;
+  --bg11 : #1A2138;
+  --bg2 : #0e1219;
+
+  //text color
+  --text_color: #f9fafc;
+
+  //UX colours
+  --success: #CDF06E;
+  --success_text: #366203;
+
+  --danger: #FF9E90;
+  --danger_text:#7a0d39;
+
+  --info: #6DB8FD;
+  --info_text: #021f77;
+
+  --warning: #FFD16A;
+  --warning_text: #7a3901;
+
+
+  // UX Neutrals
+  --n1: #e9e9e9;
+  --n2: #babdbf;
+  --n3: #666a6d;
+  --n4: #212122;
+
+   //Padding
+   --pad0: 8px;
+   --pad : 16px;
+   --pad1: 24px;
+   --pad2: 32px;
+   --pad3: 48px;
+   --pad4: 64px;
+   --pad5: 96px;
+
+   --block_pad : 64px;
+   --border-radius : 0px;
+	--overlay: rgba(0,0,0,0.5);
+	//--box-shadow: 6px 6px 12px var(--bg11),-6px -6px 12px var(--bg10);
+	--box-shadow: 6px 6px 12px var(--bg11),-6px -6px 12px rgba(var(--bg10), 0.8) ;
+
+
+}
+html[data-theme='dark']{
+
+   //bg colors
+   --bg1 : #fff;
+   --bg10 : #ecf0f1;
+   --bg11 : #dfe4ea;
+
+   //text color
+   --text_color: #111;
+
+   --overlay: rgba(255, 255, 255, 0.2);
+}
+
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 420ms!important;
+  transition-delay: 0!important;
+}
+
+//Grid
+$max-width: 1128px;
+$max-width_m: 720px;
+$max-width_n: 328px;
+
+$break-small: 30em;
+$break-mid: 40em;
+$break-large: 60em;
+
+$transition: 0.35s all cubic-bezier(0.455, 0.03, 0.515, 0.955);
+$transition-fast: 0.15s ease;
