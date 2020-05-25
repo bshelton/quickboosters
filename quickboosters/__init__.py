@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_cors import CORS
 
-
 from quickboosters.environments import Environment
 from quickboosters.config import DevConfig, TestConfig
 
@@ -11,10 +10,9 @@ db: SQLAlchemy = SQLAlchemy()
 
 
 def create_app(env: Environment) -> Flask:
-    print(env.name)
     app = Flask(__name__)
-    db.init_app(app)
     if env.name == "DEVELOPMENT":
+        print(env.name)
         devconfig = DevConfig()
         app.config.from_object(devconfig)
         db.init_app(app)

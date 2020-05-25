@@ -28,8 +28,9 @@ def client(app: Flask) -> FlaskClient:
 def db(app: Flask) -> Generator[SQLAlchemy, None, None]:
     from quickboosters import db
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    db.init_app(app)
     with app.app_context():
-  
+
         db.drop_all()
         db.create_all()
         yield db
