@@ -1,5 +1,4 @@
 import os
-from flask_mail import Mail
 from quickboosters.config import DevConfig
 from quickboosters.environments import Environment as env
 from quickboosters import (

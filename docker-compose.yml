@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  app:
+    depends_on:
+      - smtp
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    links:
+      - smtp
+      - db
+    networks:
+      - boost-network
+  db:
+    image: mariadb:latest
+    environment: 
+      MYSQL_ROOT_PASSWORD: ${DB_PASS_PROD}
+      MYSQL_DATABASE: ${DB_NAME_PROD}
+      MYSQL_USER:  ${DB_USER_PROD}
+      MYSQL_PASSWORD: ${DB_PASS_PROD}
+    ports:
+      - 3306:3306
+    networks:
+      - boost-network
+  smtp:
+    image: python:3.6-alpine
+    entrypoint: ["python", "-m", "smtpd", "--debug", "-n", "0.0.0.0:8025"]
+    networks:
+      - boost-network
+networks:
+  boost-network:
+    driver: bridge

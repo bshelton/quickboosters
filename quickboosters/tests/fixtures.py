@@ -1,10 +1,8 @@
 from __future__ import absolute_import
-
 from typing import Generator
 
 from flask import Flask
 from flask.testing import FlaskClient
-
 from flask_sqlalchemy import SQLAlchemy
 
 from quickboosters import create_app

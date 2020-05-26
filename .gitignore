@@ -9,3 +9,4 @@ venv/
 .flaskenv
 node_modules/
 .pytest_cache/
+.dockerignore

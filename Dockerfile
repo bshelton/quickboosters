@@ -14,8 +14,12 @@ RUN venv/bin/pip install -r requirements.txt
 RUN venv/bin/pip install gunicorn
 
 COPY quickboosters quickboosters
+COPY start.sh start.sh
 COPY run.py run.py
 
 ENV FLASK_APP run.py
+ENV FLASK_ENV development
 
 EXPOSE 5000
+
+ENTRYPOINT ["./start.sh"]

@@ -75,7 +75,7 @@ class TestConfig(Config):
 class DevConfig(Config):
     DEBUG = True
     SQLALCHEMY_ECHO = False
-    SMTP_SERVER = "localhost"
+    SMTP_SERVER = "smtp"
     SMTP_PORT = 8025
     SENDER_EMAIL = "noreply@quickboosters.com"
     DB_USER = os.getenv('DB_USER_DEV')
