@@ -34,6 +34,24 @@ class Config(object):
 
 class ProductionConfig(Config):
     DEBUG = False
+    SQLALCHEMY_ECHO = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SMTP_SERVER = "localhost"
+    SMTP_PORT = 8025
+    SENDER_EMAIL = "noreply@quickboosters.com"
+    DB_USER = os.getenv('DB_USER_PROD')
+    DB_PASS = os.getenv('DB_PASS_PROD')
+    DB_HOST = os.getenv('DB_HOST_PROD')
+    DB_NAME = os.getenv('DB_NAME_PROD')
+
+    @property
+    def SQLALCHEMY_DATABASE_URI(self):
+        return 'mysql://{0}:{1}@{2}/{3}'.format(
+            self.DB_USER,
+            self.DB_PASS,
+            self.DB_HOST,
+            self.DB_NAME
+        )
 
 
 class TestConfig(Config):
@@ -75,7 +93,7 @@ class TestConfig(Config):
 class DevConfig(Config):
     DEBUG = True
     SQLALCHEMY_ECHO = False
-    SMTP_SERVER = "smtp"
+    SMTP_SERVER = "localhost"
     SMTP_PORT = 8025
     SENDER_EMAIL = "noreply@quickboosters.com"
     DB_USER = os.getenv('DB_USER_DEV')

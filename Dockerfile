@@ -22,4 +22,6 @@ ENV FLASK_ENV development
 
 EXPOSE 5000
 
+RUN chmod -R a+x /home/boost
+
 ENTRYPOINT ["./start.sh"]
