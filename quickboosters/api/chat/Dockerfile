@@ -7,10 +7,12 @@ RUN apk add mariadb-connector-c-dev
 RUN apk add --no-cache bash
 
 WORKDIR /quickboosters
-RUN mkdir -p /api/chat
-RUN touch /quickboosters/__init__.py
-COPY quickboosters/api/chat .
+RUN mkdir quickboosters
+COPY quickboosters/api/chat ./quickboosters
 RUN python -m venv venv
+RUN mv ./quickboosters/requirements.txt .
+RUN mv ./quickboosters/run.py .
+RUN mv ./quickboosters/start.sh .
 RUN venv/bin/pip install -r ./requirements.txt
 RUN venv/bin/pip install gunicorn
 
