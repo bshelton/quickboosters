@@ -53,4 +53,6 @@ def enable_login_mgr(app: Flask):
 
 def register_blueprints(app):
     from quickboosters.api.users.controller import auth
+    from quickboosters.api.chat import chat
     app.register_blueprint(auth)
+    app.register_blueprint(chat)
