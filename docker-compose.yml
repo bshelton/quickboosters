@@ -1,14 +1,5 @@
 version: "3.3"
 services:
-  chat:
-    build:
-      context: .
-      dockerfile: quickboosters/api/chat/Dockerfile
-    links:
-      - app
-      - db
-    networks:
-      - boost-network
   app:
     depends_on:
       - smtp

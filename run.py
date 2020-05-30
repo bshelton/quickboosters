@@ -3,7 +3,8 @@ from quickboosters.config import DevConfig
 from quickboosters.environments import Environment as env
 from quickboosters import (
     create_app,
-    db
+    db,
+    socketio
 )
 
 
@@ -20,4 +21,4 @@ else:
 
 
 if __name__ == "__main__":
-    app.run()
+    socketio.run(app)
