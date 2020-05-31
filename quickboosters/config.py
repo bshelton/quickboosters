@@ -13,6 +13,7 @@ class Config(object):
     DB_HOST = ''
     DB_NAME = ''
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    CORS_HEADERS = 'Content-Type'
 
     @property
     def SQLALCHEMY_DATABASE_URI(self):
