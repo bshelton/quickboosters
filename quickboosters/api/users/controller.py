@@ -13,7 +13,7 @@ from quickboosters.api.users.schema import UserSchema
 from quickboosters.api.users.service import UserService
 
 
-@auth.route('/auth/login', methods=['POST'])
+@auth.route('/api/v1/auth/login', methods=['POST'])
 def login_and_generate_token() -> str:
     """API route to generate token.
 
@@ -22,11 +22,8 @@ def login_and_generate_token() -> str:
     Returns:
         str: a JSON encoded response.
     """
-
-    req_json: dict = request.get_json()
-
-    username: str = req_json['username']
-    password: str = req_json['password']
+    username: str = request.form['username']
+    password: str = request.form['password']
     user = UserService().get_by_username(username)
 
     try:
