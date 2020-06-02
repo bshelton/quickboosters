@@ -11,7 +11,7 @@ socketio = SocketIO()
 
 
 def create_app(env: Environment) -> Flask:
-    app = Flask(__name__)
+    app = Flask(__name__, static_folder=DevConfig.static_folder)
     if env.name == "DEVELOPMENT":
         print(env.name)
         devconfig = DevConfig()
@@ -48,5 +48,7 @@ def enable_login_mgr(app: Flask):
 def register_blueprints(app):
     from quickboosters.api.users.controller import auth
     from quickboosters.api.chat import chat
+    from quickboosters.frontend.home import home
+    app.register_blueprint(home)
     app.register_blueprint(auth)
     app.register_blueprint(chat)

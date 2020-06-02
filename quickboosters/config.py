@@ -4,6 +4,8 @@ import os
 
 class Config(object):
     project_folder = os.path.dirname(os.path.realpath(__file__))
+    static_folder = os.path.join(project_folder + '/frontend/static')
+    template_folder = os.path.join(project_folder + '/frontend/templates')
     DEBUG = True
     load_dotenv(os.path.join(project_folder + '/env_files/', '.env'))
     SECRET_KEY = os.getenv('SECRET_KEY')
