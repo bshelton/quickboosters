@@ -2,4 +2,4 @@ from enum import Enum
 
 
 class RegionEnum(Enum):
-    north_america = 1
+    NORTH_AMERICA = 1

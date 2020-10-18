@@ -5,8 +5,9 @@ from flask import Flask
 from flask.testing import FlaskClient
 from flask_sqlalchemy import SQLAlchemy
 
-from quickboosters import create_app
+from quickboosters import create_app, db
 from quickboosters.environments import Environment
+
 
 import pytest
 

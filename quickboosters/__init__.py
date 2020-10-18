@@ -19,6 +19,7 @@ def create_app(env: Environment) -> Flask:
         db.init_app(app)
         socketio.init_app(app)
         with app.app_context():
+            enable_models()
             enable_login_mgr(app)
             register_blueprints(app)
     elif env.name == "TESTING":
@@ -52,3 +53,7 @@ def register_blueprints(app):
     app.register_blueprint(home)
     app.register_blueprint(auth)
     app.register_blueprint(chat)
+
+
+def enable_models():
+    from quickboosters.api.users.model import User

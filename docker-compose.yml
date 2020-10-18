@@ -15,6 +15,7 @@ services:
     networks:
       - boost-network
   db:
+    hostname: db
     image: mariadb:latest
     environment: 
       MYSQL_ROOT_PASSWORD: ${DB_PASS_PROD}

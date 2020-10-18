@@ -13,3 +13,6 @@ class UserSchema(Schema):
     email = fields.String(attribute="email")
     role = fields.String(attribute="role")
     created_on = fields.DateTime()
+
+
+summary_schema = UserSchema(only=("username", "email", "role"))
